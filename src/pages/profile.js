@@ -1,20 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
 
 import { auth } from '../firebase';
 
 import withAuthorization from '../helpers/withAuthorization';
-import { propByKey } from '../helpers/helpers';
+import { propByKey, authCondition } from '../helpers/helpers';
 
 import Input from '../components/Input';
 import Button from '../components/Button';
 import Box from '../components/Box';
 import { Error, Success } from '../components/Info';
 
-const authCondition = (authUser) => !!authUser;
-
-const Profile = (props, {authUser}) =>
+const Profile = ({authUser}) =>
   <Box width={227} display="column" margin="30px">
     <p>Hi {authUser ? authUser.email : 'stranger'}</p>
     <PasswordChange/>
@@ -67,8 +66,12 @@ class PasswordChange extends React.Component {
   }
 }
 
-Profile.contextTypes = {
-  authUser: PropTypes.object,
-};
+const mapStateToProps = (state) => ({
+  authUser: state.sessionState.authUser
+});
 
-export default withRouter(withAuthorization(authCondition)(Profile));
+export default compose(
+  withRouter,
+  connect(mapStateToProps),
+  withAuthorization(authCondition)
+)(Profile);

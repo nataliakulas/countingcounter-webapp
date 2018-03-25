@@ -1,6 +1,7 @@
 import React from 'react';
 
 import withAuthorization from '../helpers/withAuthorization';
+import { authCondition } from '../helpers/helpers';
 import { db } from '../firebase/index';
 
 import Box from '../components/Box';
@@ -34,7 +35,5 @@ class Dashboard extends React.Component {
     );
   }
 }
-
-const authCondition = (authUser) => !!authUser;
 
 export default withAuthorization(authCondition)(Dashboard);
