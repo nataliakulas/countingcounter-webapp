@@ -1,0 +1,9 @@
+export const LANDING = '/';
+export const LOG_IN = '/log-in';
+export const SIGN_UP = '/sign-up';
+export const RESET_PASSWORD = '/reset-password';
+export const PROFILE = '/profile';
+export const DASHBOARD = '/dashboard';
+export const STEP_1 = '/new/one';
+export const STEP_2 = '/new/two';
+export const STEP_3 = '/new/three';

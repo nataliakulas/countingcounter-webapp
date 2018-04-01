@@ -6,10 +6,13 @@ const db = firebase.database();
 export const createUser = (id, username, email) =>
   db.ref(`users/${id}`).set({
     username,
-    email,
+    email
   });
 
-export const getUsers = () =>
-  db.ref('users').once('value');
-
-// Other Entity APIs ...
+// Counter API
+export const createCounter = (id, name, time, user) =>
+  db.ref(`counters/${id}`).set({
+    name,
+    time,
+    user
+  });

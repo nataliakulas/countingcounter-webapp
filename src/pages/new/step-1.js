@@ -1,0 +1,84 @@
+import React from 'react';
+import { connect } from 'react-redux';
+import { compose } from 'recompose';
+import { withRouter, Link } from 'react-router-dom';
+
+import { setCounterName } from '../../actions';
+
+import withAuthorization from '../../helpers/withAuthorization';
+import { authCondition, propByKey } from '../../helpers/helpers';
+import * as routes from '../../routes';
+
+import Input from '../../components/Input';
+import Button from '../../components/Button';
+import Box from '../../components/Box';
+import { Success, Error } from '../../components/Info';
+
+const mapStateToProps = (state) => ({
+  authUser: state.sessionState.authUser,
+  name: state.counterState.name,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onSetCounterName: (name) => dispatch(setCounterName(name))
+});
+
+class StepOne extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: '' || this.props.name,
+      success: false,
+      successMsg: 'Counter name set!',
+      error: false,
+      errorMsg: 'Please set counter name first!'
+    };
+  }
+
+  set = () => {
+    const save = () => {
+      this.props.onSetCounterName(this.state.name);
+      this.setState({success: true, error: false})
+    };
+
+    this.state.name ? save() : this.props.onSetCounterName(null);
+  };
+
+
+  check = (e) => {
+    if (this.props.name.length === 0) {
+      e.preventDefault();
+      this.setState({error: true})
+    } else {
+      this.setState({error: false})
+    }
+  };
+
+  render() {
+    const isInvalid = this.state.name === '';
+
+    return (
+      <Box width={227} display="column" margin="30px">
+        <p>What are you counting for?</p>
+        <Input value={this.state.name}
+               onChange={e => this.setState(propByKey('name', e.target.value))}
+               type="text"
+               placeholder="Counter name"/>
+        <Button disabled={isInvalid} onClick={this.set}>Set</Button>
+        <div className="row" style={{width: '100%'}}>
+          <Link to={routes.DASHBOARD}><p className="link">Go back</p></Link>
+          <Link onClick={this.check} to={routes.STEP_2}><p className="link">Go on</p></Link>
+        </div>
+        {this.state.success && <Success>{this.state.successMsg}</Success>}
+        {this.state.error && <Error>{this.state.errorMsg}</Error>}
+      </Box>
+    )
+  }
+}
+
+export default compose(
+  withRouter,
+  withAuthorization(authCondition),
+  connect(null, mapDispatchToProps),
+  connect(mapStateToProps)
+)(StepOne);

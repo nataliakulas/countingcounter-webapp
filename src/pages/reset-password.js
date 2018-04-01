@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 
 import { auth } from '../firebase';
-import * as routes from '../const/routes';
+import * as routes from '../routes';
 
 import { propByKey } from '../helpers/helpers';
 

@@ -4,7 +4,7 @@ import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
 
 import { auth } from '../firebase/index';
-import * as routes from '../const/routes';
+import * as routes from '../routes';
 
 const withAuthorization = (authCondition) => (Component) => {
   class WithAuthorization extends React.Component {

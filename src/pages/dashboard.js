@@ -1,4 +1,8 @@
 import React from 'react';
+import { compose } from 'recompose';
+import { Link, withRouter } from 'react-router-dom';
+
+import * as routes from '../routes';
 
 import withAuthorization from '../helpers/withAuthorization';
 import { authCondition } from '../helpers/helpers';
@@ -15,25 +19,23 @@ class Dashboard extends React.Component {
     };
   }
 
-  componentDidMount() {
-    db.getUsers().then(snapshot =>
-      this.setState(() => ({users: snapshot.val()}))
-    );
-  }
+  // componentDidMount() {
+  //   db.getUsers().then(snapshot =>
+  //     this.setState(() => ({users: snapshot.val()}))
+  //   );
+  // }
 
   render() {
-    console.log(this.state.users)
-
     return (
       <Box width={227} display="column" margin="30px">
-        <p>Users</p>
-        <ol>
-          {this.state.users && Object.keys(this.state.users).map(key =>
-            <li key={key}>{this.state.users[key].username}</li>)}
-        </ol>
+        <p>It seems like you don't have any counter yet</p>
+        <Link className="button column" to={routes.STEP_1}>Set it up!</Link>
       </Box>
     );
   }
 }
 
-export default withAuthorization(authCondition)(Dashboard);
+export default compose(
+  withRouter,
+  withAuthorization(authCondition)
+)(Dashboard);

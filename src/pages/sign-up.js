@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 
 import { auth, db } from '../firebase';
-import * as routes from '../const/routes';
+import * as routes from '../routes';
 
 import { propByKey } from '../helpers/helpers';
 
@@ -28,7 +28,7 @@ class SignUp extends React.Component {
   onSubmit = (e) => {
     auth.signUp(this.state.email, this.state.password)
       .then(authUser => {
-        db.createUser(authUser.uid, this.state.username, this.state.email)
+        db.createUser(authUser.uid, this.state.username, this.state.email, [])
           .then(() => {
             this.setState(() => ({...INITIAL_STATE}));
             this.props.history.push(routes.DASHBOARD);
