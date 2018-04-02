@@ -27,8 +27,8 @@ const withAuthorization = (authCondition) => (Component) => {
   });
 
   return compose(
+    connect(mapStateToProps),
     withRouter,
-    connect(mapStateToProps)
   )(WithAuthorization);
 };
 

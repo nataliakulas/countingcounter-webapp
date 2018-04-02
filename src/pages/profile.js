@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
-import { withRouter } from 'react-router-dom';
 
 import { auth } from '../firebase';
 
@@ -71,7 +70,6 @@ const mapStateToProps = (state) => ({
 });
 
 export default compose(
-  withRouter,
   connect(mapStateToProps),
   withAuthorization(authCondition)
 )(Profile);

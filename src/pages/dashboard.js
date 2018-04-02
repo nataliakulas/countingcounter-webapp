@@ -36,6 +36,6 @@ class Dashboard extends React.Component {
 }
 
 export default compose(
-  withRouter,
-  withAuthorization(authCondition)
+  withAuthorization(authCondition),
+  withRouter
 )(Dashboard);

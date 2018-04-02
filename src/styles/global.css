@@ -127,6 +127,21 @@ p {
   text-transform: uppercase;
 }
 
+.warning {
+  background-image: url('../media/icons/stopwatch-warning.svg');
+  background-repeat: no-repeat;
+  background-size: 30px;
+  background-position: 96% center;
+  padding-right: 45px;
+}
+
+.warning p {
+  font-size: 0.7em;
+  color: #EFC41A;
+  text-align: right;
+  text-transform: uppercase;
+}
+
 .center {
   text-align: center;
 }
@@ -197,7 +212,8 @@ p {
   background-image: url("../media/icons/exit-hover.svg");
 }
 
-.input {
+.input,
+input {
   max-width: 100%;
   height: 50px;
 
@@ -212,3 +228,5 @@ p {
 
   margin: 10px auto;
 }
+
+
