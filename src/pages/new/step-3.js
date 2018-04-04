@@ -2,13 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { withRouter, Link } from 'react-router-dom';
-import uuidv1 from 'uuid';
 import moment from 'moment';
 
 import { db } from '../../firebase';
 
 import withAuthorization from '../../helpers/withAuthorization';
-import { authCondition, propByKey } from '../../helpers/helpers';
+import { authCondition } from '../../helpers/helpers';
 import * as routes from '../../routes';
 
 import Button from '../../components/Button';
@@ -38,17 +37,10 @@ class StepThree extends React.Component {
   }
 
   onSubmit = (e) => {
-    const id = uuidv1();
-    const time = moment(this.props.time).unix().toString();
+    const time = moment(this.props.time).unix();
 
-    db.createCounter(id, this.props.name, time, this.props.authUser.uid)
-      .then(() => {
-        //clear redux
-        this.props.history.push(routes.DASHBOARD)
-      })
-      .catch(error => {
-        this.setState(propByKey('error', error));
-      });
+    db.createCounter(this.props.name, time, this.props.authUser.uid);
+    this.props.history.push(routes.DASHBOARD);
 
     e.preventDefault();
   };
@@ -80,7 +72,7 @@ class StepThree extends React.Component {
 }
 
 export default compose(
-  connect(mapStateToProps),
   withAuthorization(authCondition),
+  connect(mapStateToProps),
   withRouter
 )(StepThree);

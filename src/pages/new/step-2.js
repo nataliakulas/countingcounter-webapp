@@ -85,7 +85,7 @@ class StepTwo extends React.Component {
 }
 
 export default compose(
-  connect(null, mapDispatchToProps),
-  connect(mapStateToProps),
   withAuthorization(authCondition),
+  connect(null, mapDispatchToProps),
+  connect(mapStateToProps)
 )(StepTwo);

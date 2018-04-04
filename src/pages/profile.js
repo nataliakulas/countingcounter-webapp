@@ -70,6 +70,6 @@ const mapStateToProps = (state) => ({
 });
 
 export default compose(
-  connect(mapStateToProps),
-  withAuthorization(authCondition)
+  withAuthorization(authCondition),
+  connect(mapStateToProps)
 )(Profile);

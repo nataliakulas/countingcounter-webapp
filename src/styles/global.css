@@ -212,6 +212,19 @@ p {
   background-image: url("../media/icons/exit-hover.svg");
 }
 
+.button.details {
+  width: 75px;
+  height: 75px;
+  background-color: transparent;
+  border: none;
+  background-image: url('../media/icons/stopwatch-edit.svg');
+  background-repeat: no-repeat;
+  background-size: 50px;
+  background-position: center;
+
+  margin: 80px 20px 0 0;
+}
+
 .input,
 input {
   max-width: 100%;
@@ -229,4 +242,53 @@ input {
   margin: 10px auto;
 }
 
+.panel {
+  width: 227px;
+  height: 227px;
 
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  border: 4px solid #545E73;
+  /*border-radius: 50%;*/
+  border-radius: 25px;
+
+  margin: 10px auto;
+}
+
+.panel div {
+  width: 50%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.panel div:first-of-type {
+  position: relative;
+  padding: 10px;
+}
+
+/*.panel div:first-of-type:before {*/
+  /*content:'';*/
+  /*height:82px;*/
+
+  /*position: absolute;*/
+  /*top: 20px;*/
+  /*right: -2px;*/
+  /*border: 2px solid #545E73;*/
+/*}*/
+
+/*.panel div:first-of-type:after {*/
+  /*content:'';*/
+  /*width:70px;*/
+
+  /*position: absolute;*/
+  /*top: 104px;*/
+  /*right: -2px;*/
+  /*border: 2px solid #545E73;*/
+/*}*/

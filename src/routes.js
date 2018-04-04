@@ -7,3 +7,4 @@ export const DASHBOARD = '/dashboard';
 export const STEP_1 = '/new/one';
 export const STEP_2 = '/new/two';
 export const STEP_3 = '/new/three';
+export const DETAILS = '/details';
