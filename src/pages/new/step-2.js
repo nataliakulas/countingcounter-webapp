@@ -16,6 +16,7 @@ import Box from '../../components/Box';
 import { Success, Error, Warning } from '../../components/Info';
 
 import 'react-datepicker/dist/react-datepicker.css';
+import '../../styles/datepicker.css';
 
 const mapStateToProps = (state) => ({
   authUser: state.sessionState.authUser,
@@ -67,9 +68,19 @@ class StepTwo extends React.Component {
           inline
           selected={this.state.time}
           onChange={(date) => this.setState({time: date})}
-          dropdownMode="scroll"
+          dropdownMode="select"
           minDate={moment()}
-          dateFormat="LLL"
+          dateFormat="YYYY/MM/DD"
+          showMonthDropdown
+          showYearDropdown
+          dateFormatCalendar="MMMM"
+          scrollableYearDropdown
+          yearDropdownItemNumber={10}
+          showTimeSelect
+          timeFormat="HH:mm"
+          timeIntervals={60}
+          timeCaption="time"
+          todayButton={"Today"}
         />
         <Button disabled={isInvalid} onClick={this.set}>Set</Button>
         <div className="row" style={{width: '100%'}}>
