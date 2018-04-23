@@ -1,4 +1,4 @@
-import { COUNTER_SET_NAME, COUNTER_SET_TIME, COUNTER_SEARCH_NAME } from '../actions';
+import { COUNTER_SET_NAME, COUNTER_SET_TIME } from '../actions';
 
 const INITIAL_STATE = {
   name: '',
@@ -21,15 +21,6 @@ function setCounterReducer(state = INITIAL_STATE, action) {
     }
     default :
       return state;
-  }
-}
-
-function searchCounterReducer(state = '', action) {
-  switch (action.type) {
-    case COUNTER_SEARCH_NAME:
-      return action.payload
-    default:
-      return state
   }
 }
 
