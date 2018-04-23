@@ -11,9 +11,7 @@ import SignUp from '../pages/sign-up';
 import ResetPassword from '../pages/reset-password';
 import Profile from '../pages/profile';
 import Dashboard from '../pages/dashboard';
-import StepOne from '../pages/new/step-1';
-import StepTwo from '../pages/new/step-2';
-import StepThree from '../pages/new/step-3';
+import Create from '../pages/create';
 
 const App = () =>
   <Router history={null}>
@@ -25,9 +23,7 @@ const App = () =>
       <Route exact path={routes.RESET_PASSWORD} component={() => <ResetPassword/>}/>
       <Route exact path={routes.PROFILE} component={() => <Profile/>}/>
       <Route exact path={routes.DASHBOARD} component={() => <Dashboard/>}/>
-      <Route exact path={routes.STEP_1} component={() => <StepOne/>}/>
-      <Route exact path={routes.STEP_2} component={() => <StepTwo/>}/>
-      <Route exact path={routes.STEP_3} component={() => <StepThree/>}/>
+      <Route exact path={routes.CREATE} component={() => <Create/>}/>
     </div>
   </Router>;
 

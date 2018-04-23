@@ -10,17 +10,19 @@ export const createUser = (id, username, email) =>
   });
 
 // Counter API
-export const createCounter = (name, time, uid) => {
+export const createCounter = (name, timestamp, uid) => {
   const id = db.ref().child('counters').push().key;
 
   if (id) {
     db.ref(`counters/${id}`).set({
       name,
-      time,
+      timestamp,
       uid
     })
   }
 };
 
-export const getCounter = () =>
+export const getCounters = () =>
   db.ref(`counters`).once('value');
+
+// export const getCounter = (id) =>

@@ -1,4 +1,6 @@
 import React from 'react';
+
+import { Container, Row, Col } from 'react-grid-system';
 import { compose } from 'recompose';
 import { Link, withRouter } from 'react-router-dom';
 import moment from 'moment';
@@ -9,34 +11,31 @@ import withAuthorization from '../helpers/withAuthorization';
 import { authCondition } from '../helpers/helpers';
 import { db } from '../firebase/index';
 
-import Box from '../components/Box';
+import Field from '../components/Field';
+import Input from '../components/Input';
+import CounterPicker from '../components/CounterPicker';
 
-const Panel = (props) => {
-  return (
-    <div className="panel">
-      <div>
-        <p>{props.name}</p>
-        <p>{props.time}</p>
-      </div>
-      <div>
-        <Link className="button details" to={props.path}/>
-      </div>
-    </div>
-  )
-};
+const Counter = (props) =>
+  <div className="counter">
+    <p>{props.time}</p>
+    <p className="bold">{props.name}</p>
+  </div>;
 
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      countersBool: false,
-      counters: null
+      hasCounters: false,
+      counters: [],
+      search: '',
+      startTime: moment(),
+      endTime: moment()
     };
   }
 
   componentWillMount() {
-    db.getCounter().then(snap => {
+    db.getCounters().then(snap => {
         const counters = [];
 
         snap.forEach(item => {
@@ -45,33 +44,97 @@ class Dashboard extends React.Component {
 
           counters.push(counter)
         });
-        // console.log(counters);
-        this.setState(() => ({countersBool: true, counters: counters}))
+        console.log(counters);
+
+        if (counters.length > 0) {
+          this.setState(() => ({hasCounters: true, counters: counters}))
+        }
       }
     );
   }
 
-  render() {
-    return (
-      <div>
-        {this.state.countersBool ?
-          <Box width={227} display="column" margin="30px">
-            <p>Here are your counters:</p>
-            {this.state.counters.map(counter => {
+  updateSearch(e) {
+    this.setState({search: e.target.value.substr(0, 20)})
+  }
 
-              return (
-                <Panel key={counter.key} path={routes.DETAILS} name={counter.name}
-                       time={moment(counter.time).format('YYYY-MM-DD')}/>
-              )
-            })}
-            <Link className="button column" to={routes.STEP_1}>Add new</Link>
-          </Box> :
-          <Box width={227} display="column" margin="30px">
-            <p>It seems like you don't have any counter yet</p>
-            <Link className="button column" to={routes.STEP_1}>Set it up!</Link>
-          </Box>
+  updateTime = ({startDate: startTime, endDate: endTime}) => {
+    startTime = startTime || this.state.startTime;
+    endTime = endTime || this.state.endTime;
+
+    if (startTime.isAfter(endTime)) {
+      endTime = startTime
+    }
+
+    this.setState({startTime: startTime, endTime: endTime})
+  };
+
+  render() {
+    let filteredCounters = this.state.counters.filter(
+      counter => {
+        return counter.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
+      }
+    );
+
+    return (
+      <Container style={{height: '100vh'}}>
+        {this.state.hasCounters ?
+          <Row style={{height: '100vh'}}>
+            <Col xs={6}>
+              <Field legend={filteredCounters.length > 0 ? "Here are your counters" : "Sorry, no counters!"}
+                     display="column center" margin="10% 0 0 0">
+                {filteredCounters.map(counter =>
+                  <Counter key={counter.key}
+                           path={counter.key}
+                           name={counter.name}
+                           time={moment(counter.timestamp).format('YYYY-MM-DD')}/>
+                )}
+              </Field>
+            </Col>
+            <Col xs={6}>
+              <Link className="button column center"
+                    style={{margin: '10% 0 0 0'}}
+                    to={routes.CREATE}>Add new</Link>
+              <Input className="search"
+                     margin="60px 0 0 0"
+                     width="60%"
+                     type="text"
+                     placeholder="Counter name"
+                     value={this.state.search}
+                     onChange={e => this.updateSearch(e)}/>
+              <div className="row space-between" style={{width: '60%'}}>
+                <CounterPicker
+                  className="search"
+                  placeholderText="Start time"
+                  selected={this.state.startTime}
+                  selectsStart
+                  startDate={this.state.startTime}
+                  endDate={this.state.endTime}
+                  onChange={(startTime) => this.updateTime({startDate: startTime})}
+                />
+                <CounterPicker
+                  className="search"
+                  placeholderText="End time"
+                  selected={this.state.endTime}
+                  selectsEnd
+                  startDate={this.state.startTime}
+                  endDate={this.state.endTime}
+                  onChange={(endTime) => this.updateTime({endDate: endTime})}
+                />
+              </div>
+            </Col>
+          </Row> :
+          <Row style={{height: '100vh'}}>
+            <Col xs={4}/>
+            <Col xs={4}>
+              <Field display="column center" margin="10% 0 0 0">
+                <p className="text-center">It seems like you don't have any counter yet</p>
+                <Link className="button column center" to={routes.CREATE}>Set it up!</Link>
+              </Field>
+            </Col>
+            <Col xs={4}/>
+          </Row>
         }
-      </div>
+      </Container>
     );
   }
 }

@@ -1,18 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
-import { Link } from 'react-router-dom';
 
-import { setCounterName } from '../../actions';
+import { setCounterName } from '../actions';
 
-import withAuthorization from '../../helpers/withAuthorization';
-import { authCondition, propByKey } from '../../helpers/helpers';
-import * as routes from '../../routes';
+import withAuthorization from '../helpers/withAuthorization';
+import { authCondition, propByKey } from '../helpers/helpers';
 
-import Input from '../../components/Input';
-import Button from '../../components/Button';
-import Box from '../../components/Box';
-import { Success, Error, Warning } from '../../components/Info';
+import Input from './Input';
+import Button from './Button';
+import { Success, Error, Warning } from './Info';
 
 const mapStateToProps = (state) => ({
   authUser: state.sessionState.authUser,
@@ -23,7 +20,7 @@ const mapDispatchToProps = (dispatch) => ({
   onSetCounterName: (name) => dispatch(setCounterName(name))
 });
 
-class StepOne extends React.Component {
+class CounterName extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -59,21 +56,17 @@ class StepOne extends React.Component {
     const isInvalid = this.state.name === '';
 
     return (
-      <Box width={227} display="column" margin="30px">
+      <div className="column center">
         <p>What are you counting for?</p>
         <Input value={this.state.name}
                onChange={e => this.setState(propByKey('name', e.target.value))}
                type="text"
                placeholder="Counter name"/>
         <Button disabled={isInvalid} onClick={this.set}>Set</Button>
-        <div className="row" style={{width: '100%'}}>
-          <Link to={routes.DASHBOARD}><p className="link">Go back</p></Link>
-          <Link onClick={this.check} to={routes.STEP_2}><p className="link">Go on</p></Link>
-        </div>
-        {this.state.success && <Success>{this.state.successMsg}</Success>}
-        {this.state.warning && <Warning>{this.state.warningMsg}</Warning>}
-        {this.state.error && <Error>{this.state.errorMsg}</Error>}
-      </Box>
+
+        {this.state.error ? <Error>{this.state.errorMsg}</Error>
+          : <div style={{height: 40}}/>}
+      </div>
     )
   }
 }
@@ -82,4 +75,4 @@ export default compose(
   withAuthorization(authCondition),
   connect(null, mapDispatchToProps),
   connect(mapStateToProps)
-)(StepOne);
+)(CounterName);

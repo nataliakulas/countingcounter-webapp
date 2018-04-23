@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 
 import sessionReducer from './session';
-import counterReducer from './counter';
+import setCounterReducer from './counter';
 
 const rootReducer = combineReducers({
   sessionState: sessionReducer,
-  counterState: counterReducer,
+  counterState: setCounterReducer,
 });
 
 export default rootReducer;

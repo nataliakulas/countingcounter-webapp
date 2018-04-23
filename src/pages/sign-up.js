@@ -1,4 +1,5 @@
 import React from 'react';
+import { Container, Row, Col } from 'react-grid-system';
 import { withRouter } from 'react-router-dom';
 
 import { auth, db } from '../firebase';
@@ -6,9 +7,9 @@ import * as routes from '../routes';
 
 import { propByKey } from '../helpers/helpers';
 
+import Field from '../components/Field';
 import Input from '../components/Input';
 import Button from '../components/Button';
-import Box from '../components/Box';
 import { Error } from '../components/Info';
 
 const INITIAL_STATE = {
@@ -52,36 +53,44 @@ class SignUp extends React.Component {
       this.state.username === '';
 
     return (
-      <Box width={227} display="column" margin="30px">
-        <form onSubmit={this.onSubmit}>
-          <Input
-            value={this.state.username}
-            onChange={e => this.setState(propByKey('username', e.target.value))}
-            type="text"
-            placeholder="Full Name"
-          />
-          <Input
-            value={this.state.email}
-            onChange={e => this.setState(propByKey('email', e.target.value))}
-            type="text"
-            placeholder="Email Address"
-          />
-          <Input
-            value={this.state.password}
-            onChange={e => this.setState(propByKey('password', e.target.value))}
-            type="password"
-            placeholder="Password"
-          />
-          <Input
-            value={this.state.passwordRepeat}
-            onChange={e => this.setState(propByKey('passwordRepeat', e.target.value))}
-            type="password"
-            placeholder="Confirm Password"
-          />
-          <Button disabled={isInvalid} type="submit">Sign Up</Button>
-          { this.state.error && <Error>{this.state.error.message}</Error> }
-        </form>
-      </Box>
+      <Container style={{height: '100vh'}}>
+        <Row style={{height: '100vh'}}>
+          <Col xs={1} sm={3} md={4}/>
+          <Col xs={10} sm={6} md={4}>
+            <form onSubmit={this.onSubmit}>
+              <Field legend="Create account" display="column center" margin="50% 0 0 0">
+                <Input
+                  value={this.state.username}
+                  onChange={e => this.setState(propByKey('username', e.target.value))}
+                  type="text"
+                  placeholder="Full Name"
+                />
+                <Input
+                  value={this.state.email}
+                  onChange={e => this.setState(propByKey('email', e.target.value))}
+                  type="text"
+                  placeholder="Email Address"
+                />
+                <Input
+                  value={this.state.password}
+                  onChange={e => this.setState(propByKey('password', e.target.value))}
+                  type="password"
+                  placeholder="Password"
+                />
+                <Input
+                  value={this.state.passwordRepeat}
+                  onChange={e => this.setState(propByKey('passwordRepeat', e.target.value))}
+                  type="password"
+                  placeholder="Confirm Password"
+                />
+                <Button disabled={isInvalid} type="submit">Sign Up</Button>
+                {this.state.error ? <Error>{this.state.error.message}</Error> : <div style={{height: 40}}/>}
+              </Field>
+            </form>
+          </Col>
+          <Col xs={1} sm={3} md={4}/>
+        </Row>
+      </Container>
     );
   }
 }

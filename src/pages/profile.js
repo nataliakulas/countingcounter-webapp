@@ -1,4 +1,5 @@
 import React from 'react';
+import { Container, Row, Col } from 'react-grid-system';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 
@@ -7,16 +8,21 @@ import { auth } from '../firebase';
 import withAuthorization from '../helpers/withAuthorization';
 import { propByKey, authCondition } from '../helpers/helpers';
 
+import Field from '../components/Field';
 import Input from '../components/Input';
 import Button from '../components/Button';
-import Box from '../components/Box';
 import { Error, Success } from '../components/Info';
 
 const Profile = ({authUser}) =>
-  <Box width={227} display="column" margin="30px">
-    <p>Hi {authUser ? authUser.email : 'stranger'}</p>
-    <PasswordChange/>
-  </Box>;
+  <Container style={{height: '100vh'}}>
+    <Row style={{height: '100vh'}}>
+      <Col xs={1} sm={3} md={4}/>
+      <Col xs={10} sm={6} md={4}>
+        <PasswordChange user={authUser ? authUser.email : 'stranger'}/>
+      </Col>
+      <Col xs={1} sm={3} md={4}/>
+    </Row>
+  </Container>;
 
 const INITIAL_STATE = {
   password: '',
@@ -48,19 +54,21 @@ class PasswordChange extends React.Component {
     const isInvalid = this.state.password === '';
 
     return (
-      <Box width={227} display="column" margin="30px">
-        <p>Do you want to change your password?</p>
-        <form onSubmit={this.onSubmit}>
+      <form onSubmit={this.onSubmit}>
+        <Field legend={this.props.user} display="column center" margin="50% 0 0 0">
+          <p>Do you want to change your password?</p>
           <Input
             value={this.state.password}
             onChange={e => this.setState(propByKey('password', e.target.value))}
             type="password"
             placeholder="New password"/>
           <Button disabled={isInvalid} type="submit">Update</Button>
-          { this.state.success && <Success>Your password has been changed!</Success> }
-          { this.state.error && <Error>{this.state.error.message}</Error> }
-        </form>
-      </Box>
+          {this.state.error || this.state.success ?
+            (this.state.success && <Success>Your password has been changed!</Success> ||
+              this.state.error && <Error>{this.state.error.message}</Error>)
+            : <div style={{height: 40}}/>}
+        </Field>
+      </form>
     )
   }
 }

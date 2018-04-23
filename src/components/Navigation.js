@@ -1,4 +1,4 @@
-import React from'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -11,12 +11,10 @@ const Navigation = ({authUser}) =>
 const NavigationAuth = () =>
   <div className="navigation auth">
     <Link to={routes.DASHBOARD}><h1 className="title">Counting Counter</h1></Link>
-    <div>
-      <Link to={routes.PROFILE}>
-        <div className="user"/>
-      </Link>
-      <button className="button logout" onClick={() => auth.logOut()}/>
-    </div>
+    <ul>
+      <li><Link to={routes.PROFILE}>Profile</Link></li>
+      <li onClick={() => auth.logOut()}>Logout</li>
+    </ul>
   </div>;
 
 const NavigationNonAuth = () =>

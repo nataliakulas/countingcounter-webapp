@@ -1,22 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
-import { Link } from 'react-router-dom';
-import DatePicker from 'react-datepicker';
 import moment from 'moment';
 
-import { setCounterTime } from '../../actions';
+import { setCounterTime } from '../actions';
 
-import withAuthorization from '../../helpers/withAuthorization';
-import { authCondition } from '../../helpers/helpers';
-import * as routes from '../../routes';
+import withAuthorization from '../helpers/withAuthorization';
+import { authCondition } from '../helpers/helpers';
 
-import Button from '../../components/Button';
-import Box from '../../components/Box';
-import { Success, Error, Warning } from '../../components/Info';
-
-import 'react-datepicker/dist/react-datepicker.css';
-import '../../styles/datepicker.css';
+import Button from './Button';
+import CounterPicker from './CounterPicker';
+import { Success, Error, Warning } from './Info';
 
 const mapStateToProps = (state) => ({
   authUser: state.sessionState.authUser,
@@ -27,7 +21,7 @@ const mapDispatchToProps = (dispatch) => ({
   onSetCounterTime: (time) => dispatch(setCounterTime(time))
 });
 
-class StepTwo extends React.Component {
+class CounterTime extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -62,35 +56,25 @@ class StepTwo extends React.Component {
   render() {
     const isInvalid = this.state.time === '';
     return (
-      <Box width={227} display="column" margin="30px">
+      <div className="column center">
         <p>What is your counting time?</p>
-        <DatePicker
+        <CounterPicker
           inline
           selected={this.state.time}
           onChange={(date) => this.setState({time: date})}
-          dropdownMode="select"
           minDate={moment()}
-          dateFormat="YYYY/MM/DD"
-          showMonthDropdown
-          showYearDropdown
-          dateFormatCalendar="MMMM"
-          scrollableYearDropdown
-          yearDropdownItemNumber={10}
           showTimeSelect
           timeFormat="HH:mm"
           timeIntervals={60}
           timeCaption="time"
-          todayButton={"Today"}
         />
         <Button disabled={isInvalid} onClick={this.set}>Set</Button>
-        <div className="row" style={{width: '100%'}}>
-          <Link to={routes.STEP_1}><p className="link">Go back</p></Link>
-          <Link onClick={this.check} to={routes.STEP_3}><p className="link">Go on</p></Link>
-        </div>
-        {this.state.success && <Success>{this.state.successMsg}</Success>}
-        {this.state.warning && <Warning>{this.state.warningMsg}</Warning>}
-        {this.state.error && <Error>{this.state.errorMsg}</Error>}
-      </Box>
+        {this.state.error || this.state.success || this.state.warning ?
+          (this.state.error && <Error>{this.state.errorMsg}</Error> ||
+            this.state.success && <Success>{this.state.successMsg}</Success> ||
+            this.state.warning && <Warning>{this.state.warningMsg}</Warning>)
+          : <div style={{height: 40}}/>}
+      </div>
     )
   }
 }
@@ -99,4 +83,4 @@ export default compose(
   withAuthorization(authCondition),
   connect(null, mapDispatchToProps),
   connect(mapStateToProps)
-)(StepTwo);
+)(CounterTime);

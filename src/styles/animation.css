@@ -1,0 +1,56 @@
+@keyframes moveAndRotateUp {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-130vh) rotate(600deg);
+  }
+}
+
+@keyframes moveAndRotateDown {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(130vh) rotate(600deg);
+  }
+}
+
+.landing-animation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  padding: 0;
+  margin: 0;
+
+  z-index: -1;
+}
+
+.landing-animation li {
+  width: 40px;
+  height: 40px;
+  display: block;
+
+  position: absolute;
+
+  list-style: none;
+
+  background-image: url("../media/icons/clock.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.75;
+  transition-timing-function: linear;
+}
+
+.landing-animation li.up {
+  bottom: -150px;
+  animation: moveAndRotateUp 60s infinite;
+}
+
+.landing-animation li.down {
+  top: -150px;
+  animation: moveAndRotateDown 60s infinite;
+}
