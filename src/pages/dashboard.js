@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import { Container, Row, Col } from 'react-grid-system';
 import { compose } from 'recompose';
@@ -14,6 +15,17 @@ import { db } from '../firebase/index';
 import Field from '../components/Field';
 import Input from '../components/Input';
 import CounterPicker from '../components/CounterPicker';
+import { filterCounterStartTime, filterCounterEndTime } from "../actions";
+
+const mapStateToProps = (state) => ({
+  startTime: state.counterFilter.startTime,
+  endTime: state.counterFilter.endTime
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onFilterCounterStartTime: (startTime) => dispatch(filterCounterStartTime(startTime)),
+  onFilterCounterEndTime: (endTime) => dispatch(filterCounterEndTime(endTime)),
+});
 
 const Counter = (props) =>
   <div className="counter">
@@ -65,10 +77,14 @@ class Dashboard extends React.Component {
       endTime = startTime
     }
 
-    this.setState({startTime: startTime, endTime: endTime})
+    this.props.onFilterCounterStartTime(startTime);
+    this.props.onFilterCounterEndTime(endTime);
+
   };
 
   render() {
+    console.log(this.props)
+
     let filteredCounters = this.state.counters.filter(
       counter => {
         return counter.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
@@ -141,5 +157,7 @@ class Dashboard extends React.Component {
 
 export default compose(
   withAuthorization(authCondition),
+  connect(null, mapDispatchToProps),
+  connect(mapStateToProps),
   withRouter
 )(Dashboard);
