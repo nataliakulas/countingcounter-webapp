@@ -363,6 +363,10 @@ input {
   padding-left: 50px;
 }
 
+.input.search:focus {
+  background-image: url("../media/icons/stopwatch-search-hover.svg");
+}
+
 .input:focus,
 input:focus {
   color: #161925;

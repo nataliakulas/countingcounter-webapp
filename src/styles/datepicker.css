@@ -19,6 +19,10 @@
   padding-left: 50px;
 }
 
+.react-datepicker__input-container .search:focus {
+  background-image: url("../media/icons/stopwatch-time-hover.svg");
+}
+
 .react-datepicker-popper[data-placement^="bottom"] {
   margin-top: -3px;
 }
