@@ -14,6 +14,7 @@ import { db } from '../firebase/index';
 
 import Field from '../components/Field';
 import Input from '../components/Input';
+import Button from '../components/Button';
 import CounterPicker from '../components/CounterPicker';
 import { filterCounterStartTime, filterCounterEndTime } from "../actions";
 
@@ -45,6 +46,42 @@ class Dashboard extends React.Component {
   }
 
   componentWillMount() {
+    this.getCounters();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    let filteredCounters = [];
+
+    if (!nextProps.startTime && !nextProps.endTime) {
+      this.getCounters();
+    }
+    else if (this.props.startTime !== nextProps.startTime) {
+      console.log('startTime has changed!', nextProps.startTime);
+
+      this.state.counters.filter(counter => {
+        let counterTime = moment(counter.timestamp);
+
+        if (counterTime.isSameOrAfter(nextProps.startTime)) {
+          filteredCounters.push(counter);
+        }
+      });
+      this.setState({counters: filteredCounters})
+    }
+    else if (this.props.endTime !== nextProps.endTime) {
+      console.log('endTime has changed!', nextProps.endTime);
+
+      this.state.counters.filter(counter => {
+        let counterTime = moment(counter.timestamp);
+
+        if (counterTime.isSameOrBefore(nextProps.endTime)) {
+          filteredCounters.push(counter);
+        }
+      });
+      this.setState({counters: filteredCounters})
+    }
+  }
+
+  getCounters() {
     db.getCounters().then(snap => {
         const counters = [];
 
@@ -61,22 +98,33 @@ class Dashboard extends React.Component {
         }
       }
     );
-  }
+  };
 
   updateSearch(e) {
     this.setState({search: e.target.value.substr(0, 20)})
   }
 
-  updateStartTime = ({startDate: newStartTime}) => {
+  updateStartTime = ({startDate: newStartTime}, e) => {
+    if (this.props.endTime && this.props.endTime.isBefore(newStartTime)) {
+      return e.preventDefault;
+    }
+
     this.props.onFilterCounterStartTime(newStartTime);
   };
 
-  updateEndTime = ({endDate: newEndTime}) => {
-    if (this.props.startTime.isAfter(newEndTime)) {
-      newEndTime = this.props.startTime
+  updateEndTime = ({endDate: newEndTime}, e) => {
+    if (this.props.startTime && this.props.startTime.isAfter(newEndTime)) {
+      return e.preventDefault;
     }
 
     this.props.onFilterCounterEndTime(newEndTime);
+  };
+
+  resetFilters = (e) => {
+    this.getCounters();
+    this.setState({search: ''});
+    this.updateStartTime({startDate: null}, e);
+    this.updateEndTime({endDate: null}, e);
   };
 
   render() {
@@ -124,7 +172,7 @@ class Dashboard extends React.Component {
                   selectsStart
                   startDate={startTime}
                   endDate={endTime}
-                  onChange={newStartTime => this.updateStartTime({startDate: newStartTime})}
+                  onChange={(newStartTime, e) => this.updateStartTime({startDate: newStartTime}, e)}
                 />
                 <CounterPicker
                   className="search"
@@ -133,8 +181,11 @@ class Dashboard extends React.Component {
                   selectsEnd
                   startDate={startTime}
                   endDate={endTime}
-                  onChange={newEndTime => this.updateEndTime({endDate: newEndTime})}
+                  onChange={(newEndTime, e) => this.updateEndTime({endDate: newEndTime}, e)}
                 />
+              </div>
+              <div className="row space-between" style={{width: '60%'}}>
+                <Button type="button" className="column center" onClick={this.resetFilters}>Reset</Button>
               </div>
             </Col>
           </Row> :

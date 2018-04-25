@@ -27,4 +27,5 @@ export default (props) =>
     selectsEnd={props.selectsEnd}
     startDate={props.startDate}
     endDate={props.endDate}
+    disabled={props.disabled}
   />;
