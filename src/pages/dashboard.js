@@ -23,8 +23,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onFilterCounterStartTime: (startTime) => dispatch(filterCounterStartTime(startTime)),
-  onFilterCounterEndTime: (endTime) => dispatch(filterCounterEndTime(endTime)),
+  onFilterCounterStartTime: (newStartTime) => dispatch(filterCounterStartTime(newStartTime)),
+  onFilterCounterEndTime: (newEndTime) => dispatch(filterCounterEndTime(newEndTime)),
 });
 
 const Counter = (props) =>
@@ -40,9 +40,7 @@ class Dashboard extends React.Component {
     this.state = {
       hasCounters: false,
       counters: [],
-      search: '',
-      startTime: moment(),
-      endTime: moment()
+      search: ''
     };
   }
 
@@ -69,27 +67,27 @@ class Dashboard extends React.Component {
     this.setState({search: e.target.value.substr(0, 20)})
   }
 
-  updateTime = ({startDate: startTime, endDate: endTime}) => {
-    startTime = startTime || this.state.startTime;
-    endTime = endTime || this.state.endTime;
+  updateStartTime = ({startDate: newStartTime}) => {
+    this.props.onFilterCounterStartTime(newStartTime);
+  };
 
-    if (startTime.isAfter(endTime)) {
-      endTime = startTime
+  updateEndTime = ({endDate: newEndTime}) => {
+    if (this.props.startTime.isAfter(newEndTime)) {
+      newEndTime = this.props.startTime
     }
 
-    this.props.onFilterCounterStartTime(startTime);
-    this.props.onFilterCounterEndTime(endTime);
-
+    this.props.onFilterCounterEndTime(newEndTime);
   };
 
   render() {
-    console.log(this.props)
-
     let filteredCounters = this.state.counters.filter(
       counter => {
         return counter.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
       }
     );
+
+    let startTime = this.props && this.props.startTime;
+    let endTime = this.props && this.props.endTime;
 
     return (
       <Container style={{height: '100vh'}}>
@@ -107,9 +105,10 @@ class Dashboard extends React.Component {
               </Field>
             </Col>
             <Col xs={6}>
-              <Link className="button column center"
-                    style={{margin: '10% 0 0 0'}}
-                    to={routes.CREATE}>Add new</Link>
+              <div className="row space-between" style={{width: '60%', marginTop: '10%'}}>
+                <Link className="button column center"
+                      to={routes.CREATE}>Add new</Link>
+              </div>
               <Input className="search"
                      margin="60px 0 0 0"
                      width="60%"
@@ -121,20 +120,20 @@ class Dashboard extends React.Component {
                 <CounterPicker
                   className="search"
                   placeholderText="Start time"
-                  selected={this.state.startTime}
+                  selected={startTime}
                   selectsStart
-                  startDate={this.state.startTime}
-                  endDate={this.state.endTime}
-                  onChange={(startTime) => this.updateTime({startDate: startTime})}
+                  startDate={startTime}
+                  endDate={endTime}
+                  onChange={newStartTime => this.updateStartTime({startDate: newStartTime})}
                 />
                 <CounterPicker
                   className="search"
                   placeholderText="End time"
-                  selected={this.state.endTime}
+                  selected={endTime}
                   selectsEnd
-                  startDate={this.state.startTime}
-                  endDate={this.state.endTime}
-                  onChange={(endTime) => this.updateTime({endDate: endTime})}
+                  startDate={startTime}
+                  endDate={endTime}
+                  onChange={newEndTime => this.updateEndTime({endDate: newEndTime})}
                 />
               </div>
             </Col>

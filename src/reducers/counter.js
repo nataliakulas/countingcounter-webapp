@@ -19,7 +19,7 @@ export function setCounterReducer(state = {name: '', time: ''}, action) {
   }
 }
 
-export function filterCounterTime(state = {startTime: '', endTime: ''}, action) {
+export function filterCounterTime(state = {startTime: null, endTime: null}, action) {
   switch (action.type) {
     case COUNTER_FILTER_START_TIME: {
       return {
