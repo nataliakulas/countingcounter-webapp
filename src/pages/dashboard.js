@@ -152,41 +152,43 @@ class Dashboard extends React.Component {
                 )}
               </Field>
             </Col>
-            <Col xs={6}>
-              <div className="row space-between" style={{width: '60%', marginTop: '10%'}}>
+            <Col xs={1}/>
+            <Col xs={5}>
+              <div className="row space-between" style={{marginTop: '10%'}}>
                 <Link className="button column center"
                       to={routes.CREATE}>Add new</Link>
               </div>
-              <Input className="search"
-                     margin="60px 0 0 0"
-                     width="60%"
-                     type="text"
-                     placeholder="Counter name"
-                     value={this.state.search}
-                     onChange={e => this.updateSearch(e)}/>
-              <div className="row space-between" style={{width: '60%'}}>
-                <CounterPicker
-                  className="search"
-                  placeholderText="Start time"
-                  selected={startTime}
-                  selectsStart
-                  startDate={startTime}
-                  endDate={endTime}
-                  onChange={(newStartTime, e) => this.updateStartTime({startDate: newStartTime}, e)}
-                />
-                <CounterPicker
-                  className="search"
-                  placeholderText="End time"
-                  selected={endTime}
-                  selectsEnd
-                  startDate={startTime}
-                  endDate={endTime}
-                  onChange={(newEndTime, e) => this.updateEndTime({endDate: newEndTime}, e)}
-                />
-              </div>
-              <div className="row space-between" style={{width: '60%'}}>
-                <Button type="button" className="column center" onClick={this.resetFilters}>Reset</Button>
-              </div>
+              <Field legend="Set filter" display="column center" margin="60px 0 0 0">
+                <Input className="search"
+                       width='100%'
+                       type="text"
+                       placeholder="Counter name"
+                       value={this.state.search}
+                       onChange={e => this.updateSearch(e)}/>
+                <div className="row space-between" style={{width: '100%'}}>
+                  <CounterPicker
+                    className="search"
+                    placeholderText="Start time"
+                    selected={startTime}
+                    selectsStart
+                    startDate={startTime}
+                    endDate={endTime}
+                    onChange={(newStartTime, e) => this.updateStartTime({startDate: newStartTime}, e)}
+                  />
+                  <CounterPicker
+                    className="search"
+                    placeholderText="End time"
+                    selected={endTime}
+                    selectsEnd
+                    startDate={startTime}
+                    endDate={endTime}
+                    onChange={(newEndTime, e) => this.updateEndTime({endDate: newEndTime}, e)}
+                  />
+                </div>
+                <div className="row space-between" style={{width: '60%'}}>
+                  <Button type="button" className="column center" onClick={this.resetFilters}>Reset</Button>
+                </div>
+              </Field>
             </Col>
           </Row> :
           <Row style={{height: '100vh'}}>
