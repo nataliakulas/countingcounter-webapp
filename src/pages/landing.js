@@ -24,19 +24,22 @@ const LandingBackground = () => {
         const random = (min, max) => {
           return Math.floor(Math.random() * (max - min + 1)) + min
         };
+        const colors = ['blue', 'green', 'orange', 'red', 'turqouise', 'yellow'];
+        const colorClass = colors[Math.floor(Math.random() * colors.length)];
 
         const direction = random(0, 1);
+        const directionClass = direction === 0 ? 'up' : 'down';
         const size = random(10, 150);
         const position = random(0, 100) + '%';
         const delay = random(1, 60) + 's';
 
-        return <li key={i} className={direction === 0 ? 'up' : 'down'}
+        return <li key={i} className={`${directionClass} ${colorClass}`}
                    style={
                      {
                        width: size,
                        height: size,
                        left: position,
-                       animationDelay: delay
+                       animationDelay: delay,
                      }
                    }/>;
       })}
