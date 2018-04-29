@@ -71,12 +71,12 @@ class CounterSet extends React.Component {
             <Button className="button create" margin="0 0 20px 10px" disabled={isInvalid} type="submit">Create</Button>
           </div>
         </form>
-        {this.state.error || this.state.remove || this.state.create || this.state.warning ?
-          (this.state.error && <Error>{this.state.errorMsg}</Error> ||
-            this.state.remove && <Remove>{this.state.removeMsg}</Remove> ||
-            this.state.create && <Create>{this.state.createMsg}</Create> ||
-            this.state.warning && <Warning>{this.state.warningMsg}</Warning>)
-          : <div style={{height: 40}}/>}
+        {/*{this.state.error || this.state.remove || this.state.create || this.state.warning ?*/}
+          {/*(this.state.error && <Error>{this.state.errorMsg}</Error> ||*/}
+            {/*this.state.remove && <Remove>{this.state.removeMsg}</Remove> ||*/}
+            {/*this.state.create && <Create>{this.state.createMsg}</Create> ||*/}
+            {/*this.state.warning && <Warning>{this.state.warningMsg}</Warning>)*/}
+          {/*: <div style={{height: 40}}/>}*/}
       </div>
     )
   }

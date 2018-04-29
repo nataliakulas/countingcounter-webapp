@@ -68,7 +68,7 @@ const LandingPage = ({authUser}) => {
         </Col>
         <Col xs={1} sm={3} md={4}/>
       </Row>
-      < LandingBackground/>
+      <LandingBackground/>
     </Container>
   )
 };

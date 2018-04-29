@@ -31,7 +31,7 @@ const mapDispatchToProps = (dispatch) => ({
 const Counter = (props) =>
   <div className="counter">
     <p>{props.time}</p>
-    <p className="bold">{props.name}</p>
+    <p className="bold"><Link to={routes.DETAILS + props.path}>{props.name}</Link></p>
   </div>;
 
 class Dashboard extends React.Component {
@@ -58,7 +58,7 @@ class Dashboard extends React.Component {
     else if (this.props.startTime !== nextProps.startTime) {
       console.log('startTime has changed!', nextProps.startTime);
 
-      this.state.counters.filter(counter => {
+      this.state.counters.forEach(counter => {
         let counterTime = moment(counter.timestamp);
 
         if (counterTime.isSameOrAfter(nextProps.startTime)) {
@@ -70,7 +70,7 @@ class Dashboard extends React.Component {
     else if (this.props.endTime !== nextProps.endTime) {
       console.log('endTime has changed!', nextProps.endTime);
 
-      this.state.counters.filter(counter => {
+      this.state.counters.forEach(counter => {
         let counterTime = moment(counter.timestamp);
 
         if (counterTime.isSameOrBefore(nextProps.endTime)) {
@@ -158,7 +158,7 @@ class Dashboard extends React.Component {
                 <Link className="button column center"
                       to={routes.CREATE}>Add new</Link>
               </div>
-              <Field legend="Set filter" display="column center" margin="60px 0 0 0">
+              <Field legend="Filter them" display="column center" margin="60px 0 0 0">
                 <Input className="search"
                        width='100%'
                        type="text"

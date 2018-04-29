@@ -69,11 +69,11 @@ class CounterTime extends React.Component {
           timeCaption="time"
         />
         <Button disabled={isInvalid} onClick={this.set}>Set</Button>
-        {this.state.error || this.state.success || this.state.warning ?
-          (this.state.error && <Error>{this.state.errorMsg}</Error> ||
-            this.state.success && <Success>{this.state.successMsg}</Success> ||
-            this.state.warning && <Warning>{this.state.warningMsg}</Warning>)
-          : <div style={{height: 40}}/>}
+        {/*{this.state.error || this.state.success || this.state.warning ?*/}
+          {/*(this.state.error && <Error>{this.state.errorMsg}</Error> ||*/}
+            {/*this.state.success && <Success>{this.state.successMsg}</Success> ||*/}
+            {/*this.state.warning && <Warning>{this.state.warningMsg}</Warning>)*/}
+          {/*: <div style={{height: 40}}/>}*/}
       </div>
     )
   }

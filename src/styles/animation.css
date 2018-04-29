@@ -45,6 +45,30 @@
   transition-timing-function: linear;
 }
 
+.landing-animation li.blue {
+  background-image: url("../media/icons/clock-blue.svg");
+}
+
+.landing-animation li.green {
+  background-image: url("../media/icons/clock-green.svg");
+}
+
+.landing-animation li.orange {
+  background-image: url("../media/icons/clock-orange.svg");
+}
+
+.landing-animation li.red {
+  background-image: url("../media/icons/clock-red.svg");
+}
+
+.landing-animation li.turqouise {
+  background-image: url("../media/icons/clock-turqouise.svg");
+}
+
+.landing-animation li.yellow {
+  background-image: url("../media/icons/clock-yellow.svg");
+}
+
 .landing-animation li.up {
   bottom: -150px;
   animation: moveAndRotateUp 60s infinite;

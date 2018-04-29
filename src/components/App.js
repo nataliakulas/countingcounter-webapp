@@ -12,6 +12,7 @@ import ResetPassword from '../pages/reset-password';
 import Profile from '../pages/profile';
 import Dashboard from '../pages/dashboard';
 import Create from '../pages/create';
+import Details from '../pages/details';
 
 const App = () =>
   <Router history={null}>
@@ -24,6 +25,7 @@ const App = () =>
       <Route exact path={routes.PROFILE} component={() => <Profile/>}/>
       <Route exact path={routes.DASHBOARD} component={() => <Dashboard/>}/>
       <Route exact path={routes.CREATE} component={() => <Create/>}/>
+      <Route exact path={routes.DETAILS + ':id'} component={(props) => <Details {...props}/>}/>
     </div>
   </Router>;
 

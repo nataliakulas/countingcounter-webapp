@@ -5,3 +5,4 @@ export const RESET_PASSWORD = '/reset-password';
 export const PROFILE = '/profile';
 export const DASHBOARD = '/dashboard';
 export const CREATE = '/counter/create';
+export const DETAILS = '/counter/details/';
