@@ -43,15 +43,6 @@ class CounterName extends React.Component {
     this.state.name ? save() : this.props.onSetCounterName(null);
   };
 
-  check = (e) => {
-    if (this.props.name.length === 0) {
-      e.preventDefault();
-      this.setState({warning: true})
-    } else {
-      this.setState({warning: false})
-    }
-  };
-
   render() {
     const isInvalid = this.state.name === '';
 
@@ -63,9 +54,14 @@ class CounterName extends React.Component {
                type="text"
                placeholder="Counter name"/>
         <Button disabled={isInvalid} onClick={this.set}>Set</Button>
-
-        {this.state.error ? <Error>{this.state.errorMsg}</Error>
-          : <div style={{height: 40}}/>}
+        {this.state.error ?
+          <Error>{this.state.errorMsg}</Error>
+          : (this.state.warning ? <Warning>{this.state.warningMsg}</Warning>
+              : (this.state.success ? <Success>{this.state.successMsg}</Success>
+                  : <div style={{height: 40}}/>
+              )
+          )
+        }
       </div>
     )
   }

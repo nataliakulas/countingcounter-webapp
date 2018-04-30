@@ -59,7 +59,8 @@
   border-top-right-radius: 25px;
 }
 
-.accordion__item:nth-of-type(2) .accordion__title {
+.accordion__item:nth-of-type(2) .accordion__title,
+.accordion__item:nth-of-type(3) .accordion__title{
   border-top-width: 2px;
   border-bottom-width: 2px;
 }

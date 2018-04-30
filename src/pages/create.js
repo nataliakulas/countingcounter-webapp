@@ -6,6 +6,7 @@ import '../styles/accordion.css';
 
 import CounterName from '../components/CounterName';
 import CounterTime from '../components/CounterTime';
+import CounterMessage from '../components/CounterMessage';
 import CounterSet from '../components/CounterSet';
 
 export default () =>
@@ -30,6 +31,15 @@ export default () =>
             </AccordionItemTitle>
             <AccordionItemBody>
               <CounterTime/>
+            </AccordionItemBody>
+          </AccordionItem>
+          <AccordionItem>
+            <AccordionItemTitle>
+              <h3>Message</h3>
+              <div className="accordion__arrow" role="presentation"/>
+            </AccordionItemTitle>
+            <AccordionItemBody>
+              <CounterMessage/>
             </AccordionItemBody>
           </AccordionItem>
           <AccordionItem>

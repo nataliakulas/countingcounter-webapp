@@ -29,10 +29,10 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const Counter = (props) =>
-  <div className="counter">
+  <Link to={routes.DETAILS + props.path} className={`counter ${props.message ? 'message' : ''}`}>
     <p>{props.time}</p>
-    <p className="bold"><Link to={routes.DETAILS + props.path}>{props.name}</Link></p>
-  </div>;
+    <p className="bold">{props.name}</p>
+  </Link>;
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -148,7 +148,8 @@ class Dashboard extends React.Component {
                   <Counter key={counter.key}
                            path={counter.key}
                            name={counter.name}
-                           time={moment(counter.timestamp).format('YYYY-MM-DD')}/>
+                           time={moment(counter.timestamp).format('dddd, DD-MM-YYYY')}
+                           message={counter.message}/>
                 )}
               </Field>
             </Col>

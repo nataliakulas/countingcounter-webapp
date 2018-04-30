@@ -10,24 +10,26 @@ import { propByKey } from '../helpers/helpers';
 import Field from '../components/Field';
 import Input from '../components/Input';
 import Button from '../components/Button';
-import { Error } from '../components/Info';
-
-const INITIAL_STATE = {
-  email: '',
-  error: null,
-};
+import { Error, Success } from '../components/Info';
 
 class ResetPassword extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {...INITIAL_STATE};
+    this.state = {
+      email: '',
+      error: null,
+      success: false
+    };
   }
 
   onSubmit = (e) => {
     auth.resetPass(this.state.email)
       .then(() => {
-        this.setState(() => ({...INITIAL_STATE}));
-        this.props.history.push(routes.LOG_IN);
+        this.setState(() => ({
+          email: '',
+          error: null,
+          success: true
+        }));
       })
       .catch(error => {
         this.setState(propByKey('error', error));
@@ -54,7 +56,12 @@ class ResetPassword extends React.Component {
                   placeholder="Email Address"
                 />
                 <Button disabled={isInvalid} type="submit">Send</Button>
-                {this.state.error ? <Error>{this.state.error.message}</Error> : <div style={{height: 40}}/>}
+                {this.state.error ?
+                  <Error>{this.state.error.message}</Error>
+                  : (this.state.success ? <Success>Please check your e-mail</Success>
+                      : <div style={{height: 40}}/>
+                  )
+                }
               </Field>
             </form>
           </Col>

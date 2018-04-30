@@ -129,6 +129,7 @@ p {
 .success,
 .warning,
 .create,
+.remove,
 .delete {
   height: 40px;
   background-repeat: no-repeat;
@@ -211,6 +212,10 @@ p {
   align-items: center;
 }
 
+.self-align-end {
+  align-self: flex-end;
+}
+
 .checkbox-wrapper {
   display: flex;
   flex-direction: row;
@@ -269,6 +274,31 @@ p {
 /*.checkbox input:checked:hover ~ .checkmark {*/
 /*background-image: url("../media/icons/checked-hover.svg");*/
 /*}*/
+
+.checkbox.message {
+  width: 70px;
+  height: 75px;
+}
+
+.checkbox.message input[type=checkbox] {
+  width: 70px;
+  height: 75px;
+}
+
+.checkbox.message input ~ .checkmark {
+  width: 70px;
+  height: 75px;
+  background-color: #ECF0F1;
+  border: none;
+  border-radius: 0;
+  background-image: url("../media/icons/envelope.svg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.checkbox.message input:checked ~ .checkmark {
+  background-image: url("../media/icons/envelope-open.svg");
+}
 
 .button {
   width: 100%;
@@ -385,9 +415,25 @@ input:focus {
   margin: 10px;
 }
 
+.counter:hover {
+  border-color: #293447;
+  background-color: #FDFFFC;
+}
+
 .counter p {
   font-size: 0.85em;
   text-align: right;
+}
+
+.counter.message {
+  background-image: url("../media/icons/stopwatch-message.svg");
+  background-repeat: no-repeat;
+  background-size: 30px;
+  background-position: 170px 77px;
+}
+
+.counter.message:hover {
+  background-image: url("../media/icons/stopwatch-message-hover.svg");
 }
 
 .counter-box {
@@ -480,4 +526,62 @@ input:focus {
   background-color: #293447;
   background-image: url("../media/icons/down-arrow-hover.svg");
   border: 4px solid #293447;
+}
+
+.textarea {
+  width: 100%;
+
+  font-size: 1em;
+  font-family: 'Open Sans', sans-serif;
+  color: #161925;
+
+  background-color: #ECF0F1;
+  border: 4px solid #545E73;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 10px;
+
+  resize: none;
+}
+
+.textarea:focus {
+  background-color: #FDFFFC;
+  border-color: #293447;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal {
+  width: 35%;
+  height: 300px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #FDFFFC;
+  border: 4px solid #293447;
+  border-radius: 10px;
+
+  margin: 290px auto;
+}
+
+.modal .button {
+  max-width: 150px;
+  background-color: #FDFFFC;
+}
+
+.modal .button:hover {
+  color: #FDFFFC;
+  background-color: #293447;
 }

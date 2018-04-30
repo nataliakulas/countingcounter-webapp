@@ -1,6 +1,12 @@
-import { COUNTER_SET_NAME, COUNTER_SET_TIME, COUNTER_FILTER_START_TIME, COUNTER_FILTER_END_TIME } from '../actions';
+import {
+  COUNTER_SET_NAME,
+  COUNTER_SET_TIME,
+  COUNTER_SET_MESSAGE,
+  COUNTER_FILTER_START_TIME,
+  COUNTER_FILTER_END_TIME
+} from '../actions';
 
-export function setCounterReducer(state = {name: '', time: ''}, action) {
+export function setCounterReducer(state = {name: '', time: '', message: ''}, action) {
   switch (action.type) {
     case COUNTER_SET_NAME : {
       return {
@@ -12,6 +18,12 @@ export function setCounterReducer(state = {name: '', time: ''}, action) {
       return {
         ...state,
         time: action.payload,
+      }
+    }
+    case COUNTER_SET_MESSAGE : {
+      return {
+        ...state,
+        message: action.payload
       }
     }
     default :

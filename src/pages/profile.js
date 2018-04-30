@@ -63,10 +63,12 @@ class PasswordChange extends React.Component {
             type="password"
             placeholder="New password"/>
           <Button disabled={isInvalid} type="submit">Update</Button>
-          {/*{this.state.error || this.state.success ?*/}
-            {/*(this.state.success && <Success>Your password has been changed!</Success> ||*/}
-              {/*this.state.error && <Error>{this.state.error.message}</Error>)*/}
-            {/*: <div style={{height: 40}}/>}*/}
+          {this.state.error ?
+            <Error>{this.state.error.message}</Error>
+            : (this.state.success ? <Success>Your password has been changed!</Success>
+                : <div style={{height: 40}}/>
+            )
+          }
         </Field>
       </form>
     )

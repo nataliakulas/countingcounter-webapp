@@ -1,5 +1,6 @@
 export const COUNTER_SET_NAME = 'COUNTER_SET_NAME';
 export const COUNTER_SET_TIME = 'COUNTER_SET_TIME';
+export const COUNTER_SET_MESSAGE = 'COUNTER_SET_MESSAGE';
 export const COUNTER_FILTER_START_TIME = 'COUNTER_FILTER_START_TIME';
 export const COUNTER_FILTER_END_TIME = 'COUNTER_FILTER_END_TIME';
 
@@ -14,6 +15,13 @@ export const setCounterTime = time => {
   return {
     type: COUNTER_SET_TIME,
     payload: time
+  }
+};
+
+export const setCounterMessage = message => {
+  return {
+    type: COUNTER_SET_MESSAGE,
+    payload: message
   }
 };
 
