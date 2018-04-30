@@ -390,6 +390,94 @@ input:focus {
   text-align: right;
 }
 
+.counter-box {
+  width: 490px;
+  height: 490px;
 
+  display: flex;
+  flex-direction: column;
 
+  background-image: url("../media/icons/clock-blue.svg");
+  background-repeat: no-repeat;
+  background-size: 100%;
 
+  padding: 35px;
+}
+
+.counter-box .half {
+  width: 100%;
+  height: 50%;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.counter-box p {
+  font-size: 1em;
+  font-family: 'Open Sans', sans-serif;
+  color: #545E73;
+  margin-bottom: 0.5em;
+}
+
+.counter-box p.bold {
+  margin-top: 45px;
+  margin-bottom: 1em;
+}
+
+.counter-box .half.top > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  margin-top: 45px;
+}
+
+.counter-box .half.bottom {
+  width: initial;
+  justify-content: space-between;
+  margin: 0 30px;
+}
+
+.counter-box .half.bottom p {
+  margin: 0;
+}
+
+.counter-box .half.bottom > div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.counter-format {
+  width: 100px;
+  height: 35px;
+
+  font-size: 1em;
+  font-family: 'Open Sans', sans-serif;
+  color: #ECF0F1;
+
+  background-color: #545E73;
+  background-image: url("../media/icons/down-arrow.svg");
+  background-repeat: no-repeat;
+  background-size: 20px;
+  background-position: 97% center;
+  border: 4px solid #545E73;
+  border-radius: 25px;
+
+  padding-left: 10px;
+  margin-left: 15px;
+
+  -webkit-appearance: button;
+  -webkit-user-select: none;
+}
+
+.counter-format:hover {
+  color: #FDFFFC;
+  background-color: #293447;
+  background-image: url("../media/icons/down-arrow-hover.svg");
+  border: 4px solid #293447;
+}
