@@ -56,8 +56,6 @@ class Dashboard extends React.Component {
       this.getCounters();
     }
     else if (this.props.startTime !== nextProps.startTime) {
-      console.log('startTime has changed!', nextProps.startTime);
-
       this.state.counters.forEach(counter => {
         let counterTime = moment(counter.timestamp);
 
@@ -68,8 +66,6 @@ class Dashboard extends React.Component {
       this.setState({counters: filteredCounters})
     }
     else if (this.props.endTime !== nextProps.endTime) {
-      console.log('endTime has changed!', nextProps.endTime);
-
       this.state.counters.forEach(counter => {
         let counterTime = moment(counter.timestamp);
 
