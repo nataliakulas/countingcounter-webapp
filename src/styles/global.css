@@ -160,6 +160,7 @@ a {
   font-weight: 600;
   color: #FDFFFC;
   text-transform: uppercase;
+  list-style-type: none;
 
   margin: 0 -160px 0 10px;
   transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -552,7 +553,7 @@ input:focus {
   background-image: url("../media/icons/stopwatch-message.svg");
   background-repeat: no-repeat;
   background-size: 30px;
-  background-position: 170px 77px;
+  background-position: calc(100% - 20px) 77px;
 }
 
 .counter.message:hover {
