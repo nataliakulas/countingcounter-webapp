@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="54px" height="54px" viewBox="0 0 54 54" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>left</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="left" fill-rule="nonzero">
+            <g id="Group" fill="#545E73">
+                <path d="M27,1 C41.359,1 53,12.641 53,27 C53,41.359 41.359,53 27,53 C12.641,53 1,41.359 1,27 C1,12.641 12.641,1 27,1 Z" id="Shape"></path>
+                <path d="M27,54 C12.112,54 0,41.888 0,27 C0,12.112 12.112,0 27,0 C41.888,0 54,12.112 54,27 C54,41.888 41.888,54 27,54 Z M27,2 C13.215,2 2,13.215 2,27 C2,40.785 13.215,52 27,52 C40.785,52 52,40.785 52,27 C52,13.215 40.785,2 27,2 Z" id="Shape"></path>
+            </g>
+            <path d="M31.706,40 C31.45,40 31.194,39.902 30.999,39.707 L19.501,28.209 C18.834,27.542 18.834,26.458 19.501,25.791 L30.999,14.293 C31.39,13.902 32.022,13.902 32.413,14.293 C32.804,14.684 32.804,15.316 32.413,15.707 L21.12,27 L32.413,38.293 C32.804,38.684 32.804,39.316 32.413,39.707 C32.218,39.902 31.962,40 31.706,40 Z" id="Shape" fill="#FDFFFC"></path>
+        </g>
+    </g>
+</svg>

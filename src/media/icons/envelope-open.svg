@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="60px" height="64px" viewBox="0 0 60 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>envelope-open</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="envelope-open" transform="translate(1.000000, 0.000000)" fill-rule="nonzero">
+            <polygon id="Shape" fill="#545E73" points="0 24.1255313 0 62.8427812 0 63 0.129 63 57.541 63 57.871 63 58 63 58 62.8427812 58 24.1255313 58 24 0 24"></polygon>
+            <path d="M30.861,0.675718297 C29.812,-0.225239432 28.187,-0.225239432 27.138,0.675718297 L0,23.9990769 L0,24 L58,24 L58,23.9990769 L30.861,0.675718297 Z" id="Shape" fill="#545E73"></path>
+            <polygon id="Shape" stroke="#ECF0F1" fill="#293447" points="0 63 0 24 21 43.5"></polygon>
+            <polygon id="Shape" stroke="#ECF0F1" fill="#293447" points="58 63 58 24 37 43.5"></polygon>
+            <path d="M56.973,62.0701875 L37,44 L21,44 L1.027,62.0701875 C0.606,62.451375 0,62.095125 0,61.4669375 L0,63 L58,63 L58,61.4669375 C58,62.095125 57.394,62.451375 56.973,62.0701875 Z" id="Shape" stroke="#ECF0F1" fill="#545E73"></path>
+        </g>
+    </g>
+</svg>

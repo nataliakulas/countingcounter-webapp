@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="60px" height="60px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>checked</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="checked" fill="#545E73" fill-rule="nonzero">
+            <path d="M0,10 L0,50 C6.76353751e-16,55.5228475 4.4771525,60 10,60 L50,60 C55.5228475,60 60,55.5228475 60,50 L60,10 C60,4.4771525 55.5228475,-4.56724431e-15 50,-3.55271368e-15 L10,0 C4.4771525,1.01453063e-15 -4.22906743e-15,4.4771525 -3.55271368e-15,10 Z M44.495,22.329 L28.495,40.329 C28.101,40.772 27.552,41 26.999,41 C26.56,41 26.119,40.856 25.75,40.562 L15.75,32.562 C14.888,31.873 14.748,30.614 15.438,29.751 C16.127,28.889 17.387,28.748 18.249,29.438 L26.766,36.251 L41.505,19.67 C42.237,18.844 43.503,18.769 44.328,19.504 C45.154,20.239 45.229,21.503 44.495,22.329 Z" id="Shape"></path>
+        </g>
+    </g>
+</svg>
