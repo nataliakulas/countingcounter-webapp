@@ -508,6 +508,7 @@ input {
 }
 
 .input.search {
+  width: 100%;
   background-repeat: no-repeat;
   background-image: url("../media/icons/stopwatch-search.svg");
   background-position: 10px center;

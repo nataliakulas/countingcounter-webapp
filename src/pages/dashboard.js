@@ -159,7 +159,6 @@ class Dashboard extends React.Component {
               </div>
               <Field title="Filters" display="column center" margin="60px 0 0 0">
                 <Input className="search"
-                       width='100%'
                        type="text"
                        placeholder="Counter name"
                        value={this.state.search}
