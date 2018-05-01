@@ -18,6 +18,7 @@ import CounterPicker from '../components/CounterPicker';
 import { filterCounterStartTime, filterCounterEndTime } from "../actions";
 
 const mapStateToProps = (state) => ({
+  authUser: state.sessionState.authUser,
   startTime: state.counterFilter.startTime,
   endTime: state.counterFilter.endTime
 });
@@ -88,7 +89,9 @@ class Dashboard extends React.Component {
           let counter = item.val();
           counter.key = item.key;
 
-          counters.push(counter)
+          if (this.props.authUser.uid === counter.uid) {
+            counters.push(counter)
+          }
         });
 
         if (counters.length > 0) {
@@ -96,7 +99,7 @@ class Dashboard extends React.Component {
         }
       }
     );
-  };
+  }
 
   updateSearch(e) {
     this.setState({search: e.target.value.substr(0, 20)})
