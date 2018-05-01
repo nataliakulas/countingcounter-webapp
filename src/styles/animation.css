@@ -78,3 +78,20 @@
   top: -150px;
   animation: moveAndRotateDown 60s infinite;
 }
+
+
+@keyframes dialspin  {
+  0% {transform: rotateZ(0deg)}
+  100% { transform: rotateZ(360deg) }
+}
+
+.hour-hand{
+  transform-origin: 50%;
+  /*   transform: rotate(180deg); */
+  animation: 20s dialspin infinite linear;
+}
+
+.minutes-hand {
+  transform-origin: 50%;
+  animation: 10s dialspin infinite linear;
+}

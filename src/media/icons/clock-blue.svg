@@ -9,8 +9,8 @@
             <path d="M10,0 L50,0 C55.5228475,-1.01453063e-15 60,4.4771525 60,10 L60,53 C60,56.8659932 56.8659932,60 53,60 L10,60 C4.4771525,60 6.76353751e-16,55.5228475 0,50 L0,10 C-6.76353751e-16,4.4771525 4.4771525,-2.53818305e-15 10,-3.55271368e-15 Z" id="Rectangle" fill="#545E73"></path>
             <rect id="Rectangle-path" fill="#ECF0F1" fill-rule="nonzero" x="4" y="4" width="52" height="52" rx="6"></rect>
             <path d="M27,30 L19,30" id="Shape" stroke="#545E73" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-            <path d="M30,27 L30,16" id="Shape" stroke="#556080" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-            <circle id="Oval" stroke="#556080" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" cx="30" cy="30" r="3"></circle>
+            <path d="M30,27 L30,16" id="Shape" stroke="#545E73" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <circle id="Oval" stroke="#545E73" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" cx="30" cy="30" r="3"></circle>
             <g id="Group" transform="translate(7.000000, 7.000000)" fill="#808AA1" fill-rule="nonzero">
                 <path d="M23,0 C22.448,0 22,0.447 22,1 L22,2 C22,2.553 22.448,3 23,3 C23.552,3 24,2.553 24,2 L24,1 C24,0.447 23.552,0 23,0 Z" id="Shape"></path>
                 <path d="M23,43 C22.448,43 22,43.447 22,44 L22,45 C22,45.553 22.448,46 23,46 C23.552,46 24,45.553 24,45 L24,44 C24,43.447 23.552,43 23,43 Z" id="Shape"></path>
