@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 
 import * as routes from '../routes';
 
+import Loader from '../components/Loader';
 import Field from '../components/Field';
 
 import '../styles/animation.css';
@@ -47,33 +48,42 @@ const LandingBackground = () => {
   )
 };
 
-const LandingPage = ({authUser}) => {
-  return (
-    <Grid>
-      <Row middle="xs" style={{minHeight: 'calc(100vh - 110px)'}}>
-        <Col xsOffset={1} xs={10} smOffset={3} sm={6} lgOffset={4} lg={4}>
-          <Field display="column center">
-            <p>Everyone is waiting for something.<br/>
-              Everyday we count years, weeks, days...</p>
-            <p>Counting Counter will count it for you!</p>
-            <p>Set up multiple counters, change their format and write a special message to your future self!</p>
-
-            {authUser ?
-              <p><Link className="link" to={routes.DASHBOARD}>Go to dashboard</Link></p> :
-              <p><Link className="link" to={routes.SIGN_UP}>Create an account</Link> today or
-                <Link className="link" to={routes.LOG_IN}> log in</Link> if you are already registered.</p>
-            }
-          </Field>
-        </Col>
-      </Row>
-      <LandingBackground/>
-    </Grid>
-  )
-};
-
 const mapStateToProps = (state) => ({
   authUser: state.sessionState.authUser
 });
+
+class LandingPage extends React.Component {
+  render() {
+
+    if (!this.props.authUser) {
+      return (
+        <Loader/>
+      );
+    }
+
+    return (
+      <Grid>
+        <Row middle="xs" style={{minHeight: 'calc(100vh - 110px)'}}>
+          <Col xsOffset={1} xs={10} smOffset={3} sm={6} lgOffset={4} lg={4}>
+            <Field display="column center">
+              <p>Everyone is waiting for something.<br/>
+                Everyday we count years, weeks, days...</p>
+              <p>Counting Counter will count it for you!</p>
+              <p>Set up multiple counters, change their format and write a special message to your future self!</p>
+
+              {this.props.authUser ?
+                <p><Link className="link" to={routes.DASHBOARD}>Go to dashboard</Link></p> :
+                <p><Link className="link" to={routes.SIGN_UP}>Create an account</Link> today or
+                  <Link className="link" to={routes.LOG_IN}> log in</Link> if you are already registered.</p>
+              }
+            </Field>
+          </Col>
+        </Row>
+        <LandingBackground/>
+      </Grid>
+    )
+  }
+}
 
 export default compose(
   connect(mapStateToProps),
