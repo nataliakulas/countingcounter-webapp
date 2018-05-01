@@ -3,19 +3,19 @@ import React from 'react';
 export default () =>
   <div style={{width: '100vw', height: '100vh', zIndex: 1001}} className="column center">
     <svg width="120px" height="120px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg">
-      <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <g id="clock-blue">
           <path
             d="M10,0 L50,0 C55.5228475,-1.01453063e-15 60,4.4771525 60,10 L60,53 C60,56.8659932 56.8659932,60 53,60 L10,60 C4.4771525,60 6.76353751e-16,55.5228475 0,50 L0,10 C-6.76353751e-16,4.4771525 4.4771525,-2.53818305e-15 10,-3.55271368e-15 Z"
             fill="#545E73"/>
-          <rect id="Rectangle-path" fill="#ECF0F1" fill-rule="nonzero" x="4" y="4" width="52" height="52" rx="6"/>
-          <path className="hour-hand" d="M27,30 L19,30" stroke="#545E73" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round"/>
-          <path className="minutes-hand" d="M30,27 L30,16" stroke="#545E73" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round"/>
-          <circle stroke="#545E73" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" cx="30"
+          <rect id="Rectangle-path" fill="#ECF0F1" fillRule="nonzero" x="4" y="4" width="52" height="52" rx="6"/>
+          <path className="hour-hand" d="M27,30 L19,30" stroke="#545E73" strokeWidth="2"
+                strokeLinecap="round" strokeLinejoin="round"/>
+          <path className="minutes-hand" d="M30,27 L30,16" stroke="#545E73" strokeWidth="2"
+                strokeLinecap="round" strokeLinejoin="round"/>
+          <circle stroke="#545E73" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" cx="30"
                   cy="30" r="3"/>
-          <g id="Group" transform="translate(7.000000, 7.000000)" fill="#808AA1" fill-rule="nonzero">
+          <g transform="translate(7.000000, 7.000000)" fill="#808AA1" fillRule="nonzero">
             <path
               d="M23,0 C22.448,0 22,0.447 22,1 L22,2 C22,2.553 22.448,3 23,3 C23.552,3 24,2.553 24,2 L24,1 C24,0.447 23.552,0 23,0 Z"
             />

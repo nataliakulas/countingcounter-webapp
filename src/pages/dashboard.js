@@ -11,6 +11,7 @@ import withAuthorization from '../helpers/withAuthorization';
 import { authCondition } from '../helpers/helpers';
 import { db } from '../firebase/index';
 
+import Loader from '../components/Loader';
 import Field from '../components/Field';
 import Input from '../components/Input';
 import Button from '../components/Button';
@@ -41,7 +42,8 @@ class Dashboard extends React.Component {
     this.state = {
       hasCounters: false,
       counters: [],
-      search: ''
+      search: '',
+      loading: true
     };
   }
 
@@ -91,7 +93,7 @@ class Dashboard extends React.Component {
         });
 
         if (counters.length > 0) {
-          this.setState(() => ({hasCounters: true, counters: counters}))
+          this.setState(() => ({hasCounters: true, counters: counters, loading: false}))
         }
       }
     );
@@ -133,6 +135,12 @@ class Dashboard extends React.Component {
 
     let startTime = this.props && this.props.startTime;
     let endTime = this.props && this.props.endTime;
+
+    if (this.state.loading) {
+      return (
+        <Loader/>
+      )
+    }
 
     return (
       <Grid>

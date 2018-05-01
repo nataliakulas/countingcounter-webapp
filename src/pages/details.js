@@ -11,6 +11,7 @@ import withAuthorization from '../helpers/withAuthorization';
 import { authCondition } from '../helpers/helpers';
 import { db } from '../firebase';
 
+import Loader from '../components/Loader';
 import Field from '../components/Field';
 import Button from '../components/Button';
 import Checkbox from '../components/Checkbox';
@@ -27,7 +28,8 @@ class CounterDetails extends React.Component {
     this.state = {
       counter: '',
       format: "seconds",
-      modal: false
+      modal: false,
+      loading: true
     }
   }
 
@@ -45,7 +47,7 @@ class CounterDetails extends React.Component {
       });
       counters.forEach(counter => {
         if (counter.key === this.props.match.params.id) {
-          this.setState({counter: counter})
+          this.setState({counter: counter, loading: false})
         }
       })
     })
@@ -76,6 +78,12 @@ class CounterDetails extends React.Component {
     const formatTime = "HH:mm";
 
     const formats = ["seconds", "minutes", "hours", "days", "months", "years"];
+
+    if (this.state.loading) {
+      return (
+        <Loader/>
+      )
+    }
 
     return (
       <Grid>
