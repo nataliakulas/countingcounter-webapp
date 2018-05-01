@@ -1,7 +1,6 @@
 import React from 'react';
+import { Grid, Row, Col } from 'react-flexbox-grid';
 import { connect } from 'react-redux';
-
-import { Container, Row, Col } from 'react-grid-system';
 import { compose } from 'recompose';
 import { Link, withRouter } from 'react-router-dom';
 import moment from 'moment';
@@ -91,7 +90,6 @@ class Dashboard extends React.Component {
 
           counters.push(counter)
         });
-        console.log(counters);
 
         if (counters.length > 0) {
           this.setState(() => ({hasCounters: true, counters: counters}))
@@ -138,12 +136,12 @@ class Dashboard extends React.Component {
     let endTime = this.props && this.props.endTime;
 
     return (
-      <Container style={{height: '100vh'}}>
+      <Grid>
         {this.state.hasCounters ?
-          <Row style={{height: '100vh'}}>
-            <Col xs={6}>
-              <Field legend={filteredCounters.length > 0 ? "Here are your counters" : "Sorry, no counters!"}
-                     display="column center" margin="10% 0 0 0">
+          <Row top="xs" style={{minHeight: 'calc(100vh - 110px)'}}>
+            <Col xsOffset={1} xs={10} smOffset={1} sm={5} xlOffset={0} xl={6} style={{marginTop: 110}}>
+              <Field title={filteredCounters.length > 0 ? "Here are your counters" : "Sorry, no counters!"}
+                     display="column center">
                 {filteredCounters.map(counter =>
                   <Counter key={counter.key}
                            path={counter.key}
@@ -153,20 +151,20 @@ class Dashboard extends React.Component {
                 )}
               </Field>
             </Col>
-            <Col xs={1}/>
-            <Col xs={5}>
-              <div className="row space-between" style={{marginTop: '10%'}}>
+
+            <Col xsOffset={1} xs={10} smOffset={1} sm={5} lg={4} xl={5} style={{marginTop: 110}}>
+              <div className="display-row space-between">
                 <Link className="button column center"
                       to={routes.CREATE}>Add new</Link>
               </div>
-              <Field legend="Filter them" display="column center" margin="60px 0 0 0">
+              <Field title="Filters" display="column center" margin="60px 0 0 0">
                 <Input className="search"
                        width='100%'
                        type="text"
                        placeholder="Counter name"
                        value={this.state.search}
                        onChange={e => this.updateSearch(e)}/>
-                <div className="row space-between" style={{width: '100%'}}>
+                <div className="filters-wrapper">
                   <CounterPicker
                     className="search"
                     placeholderText="Start time"
@@ -186,24 +184,22 @@ class Dashboard extends React.Component {
                     onChange={(newEndTime, e) => this.updateEndTime({endDate: newEndTime}, e)}
                   />
                 </div>
-                <div className="row space-between" style={{width: '60%'}}>
+                <div className="display-row space-between" style={{width: '60%'}}>
                   <Button type="button" className="column center" onClick={this.resetFilters}>Reset</Button>
                 </div>
               </Field>
             </Col>
           </Row> :
-          <Row style={{height: '100vh'}}>
-            <Col xs={4}/>
-            <Col xs={4}>
+          <Row middle="xs" style={{minHeight: 'calc(100vh - 110px)'}}>
+            <Col xsOffset={1} xs={10} smOffset={3} sm={6} lgOffset={4} lg={4}>
               <Field display="column center" margin="10% 0 0 0">
                 <p className="text-center">It seems like you don't have any counter yet</p>
                 <Link className="button column center" to={routes.CREATE}>Set it up!</Link>
               </Field>
             </Col>
-            <Col xs={4}/>
           </Row>
         }
-      </Container>
+      </Grid>
     );
   }
 }

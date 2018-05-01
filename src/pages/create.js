@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-grid-system';
+import { Grid, Row, Col } from 'react-flexbox-grid';
 import { Accordion, AccordionItem, AccordionItemTitle, AccordionItemBody } from 'react-accessible-accordion';
 
 import '../styles/accordion.css';
@@ -10,11 +10,10 @@ import CounterMessage from '../components/CounterMessage';
 import CounterSet from '../components/CounterSet';
 
 export default () =>
-  <Container style={{height: '100vh'}}>
-    <Row style={{height: '100vh'}}>
-      <Col xs={1} sm={3} md={4}/>
-      <Col xs={10} sm={6} md={4}>
-        <Accordion style={{margin: "50% 0 0 0"}}>
+  <Grid>
+    <Row middle="xs" top="sm" style={{minHeight: 'calc(100vh - 110px)'}}>
+      <Col xsOffset={1} xs={10} smOffset={3} sm={6} lgOffset={4} lg={4} style={{marginTop: 110}}>
+        <Accordion style={{margin: '25px auto'}}>
           <AccordionItem>
             <AccordionItemTitle>
               <h3>Name</h3>
@@ -53,6 +52,5 @@ export default () =>
           </AccordionItem>
         </Accordion>
       </Col>
-      <Col xs={1} sm={3} md={4}/>
     </Row>
-  </Container>;
+  </Grid>;

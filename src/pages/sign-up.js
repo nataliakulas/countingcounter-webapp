@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-grid-system';
+import { Grid, Row, Col } from 'react-flexbox-grid';
 import { withRouter } from 'react-router-dom';
 
 import { auth, db } from '../firebase';
@@ -53,12 +53,11 @@ class SignUp extends React.Component {
       this.state.username === '';
 
     return (
-      <Container style={{height: '100vh'}}>
-        <Row style={{height: '100vh'}}>
-          <Col xs={1} sm={3} md={4}/>
-          <Col xs={10} sm={6} md={4}>
+      <Grid>
+        <Row middle="xs" style={{minHeight: 'calc(100vh - 110px)'}}>
+          <Col xsOffset={1} xs={10} smOffset={3} sm={6} lgOffset={4} lg={4}>
             <form onSubmit={this.onSubmit}>
-              <Field legend="Create account" display="column center" margin="50% 0 0 0">
+              <Field title="Create account" display="column center">
                 <Input
                   value={this.state.username}
                   onChange={e => this.setState(propByKey('username', e.target.value))}
@@ -88,9 +87,8 @@ class SignUp extends React.Component {
               </Field>
             </form>
           </Col>
-          <Col xs={1} sm={3} md={4}/>
         </Row>
-      </Container>
+      </Grid>
     );
   }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-grid-system';
+import { Grid, Row, Col } from 'react-flexbox-grid';
 import { withRouter, Link } from 'react-router-dom';
 
 import { auth } from '../firebase';
@@ -43,12 +43,11 @@ class LogIn extends React.Component {
       this.state.email === '';
 
     return (
-      <Container style={{height: '100vh'}}>
-        <Row style={{height: '100vh'}}>
-          <Col xs={1} sm={3} md={4}/>
-          <Col xs={10} sm={6} md={4}>
+      <Grid>
+        <Row middle="xs" style={{minHeight: 'calc(100vh - 110px)'}}>
+          <Col xsOffset={1} xs={10} smOffset={3} sm={6} lgOffset={4} lg={4}>
             <form onSubmit={this.onSubmit}>
-              <Field legend="Log in" display="column center" margin="50% 0 0 0">
+              <Field title="Log in" display="column center">
                 <Input
                   value={this.state.email}
                   onChange={e => this.setState(propByKey('email', e.target.value))}
@@ -70,9 +69,8 @@ class LogIn extends React.Component {
                 remember password</p>
             </Link>
           </Col>
-          <Col xs={1} sm={3} md={4}/>
         </Row>
-      </Container>
+      </Grid>
     );
   }
 }

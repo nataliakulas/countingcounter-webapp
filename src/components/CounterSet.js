@@ -81,7 +81,7 @@ class CounterSet extends React.Component {
           <Checkbox checked={this.props.message}
                     label="Message"
                     readOnly/>
-          <div className="row" style={{width: '100%', justifyContent: 'space-between'}}>
+          <div className="display-row" style={{width: '100%', justifyContent: 'space-between'}}>
             <Button className="button remove" margin="0 10px 20px 0"
                     onClick={this.onDelete}>Delete</Button>
             <Button className="button create" margin="0 0 20px 10px" disabled={isInvalid} type="submit">Create</Button>

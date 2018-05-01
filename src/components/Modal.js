@@ -10,9 +10,7 @@ export default class extends React.Component {
     return (
       <div className="modal-overlay">
         <div className="modal">
-          <div className="modal-header">
-            <button onClick={this.props.close}>Close</button>
-          </div>
+          <div className="modal-close" onClick={this.props.close}/>
           {this.props.children}
         </div>
       </div>

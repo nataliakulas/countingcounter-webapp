@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-grid-system';
+import { Grid, Row, Col } from 'react-flexbox-grid';
 import { withRouter } from 'react-router';
 import { compose } from 'recompose';
 import moment from 'moment/moment';
@@ -36,10 +36,7 @@ class CounterDetails extends React.Component {
 
         counters.push(counter)
       });
-      console.log(counters);
-
       counters.forEach(counter => {
-        console.log(counter.key);
         if (counter.key === this.props.match.params.id) {
           this.setState({counter: counter})
         }
@@ -74,7 +71,7 @@ class CounterDetails extends React.Component {
     const formats = ["seconds", "minutes", "hours", "days", "months", "years"];
 
     return (
-      <Container>
+      <Grid>
         <Modal show={this.state.modal} close={this.onClose} className="column center">
           <p>Do you really want to delete this counter?</p>
           <div className="row" style={{width: '80%', marginTop: 30}}>
@@ -82,12 +79,13 @@ class CounterDetails extends React.Component {
             <Button onClick={this.deleteCounter}>Yes!</Button>
           </div>
         </Modal>
-        <Row>
-          <Col xs={12}>
-            <Field legend={this.state.counter.name ? this.state.counter.name : "Waiting for counter.."}
-                   margin="10% 0 0 0" padding="50px 60px">
+        <Row top="xs" style={{minHeight: 'calc(100vh - 110px)'}}>
+          <Col xsOffset={1} xs={10} smOffset={2} sm={8} lgOffset={3} lg={6} xlOffset={0} xl={12}
+               style={{marginTop: 110}}>
+            <Field title={this.state.counter.name ? this.state.counter.name : "Waiting for counter.."}
+                   display="field-padding">
               <Row>
-                <Col xs={6}>
+                <Col xs={12} xl={6}>
                   <div className="counter-box">
                     <div className="half top">
                       <p className="bold">Counter set to:</p>
@@ -101,7 +99,7 @@ class CounterDetails extends React.Component {
                       <div className="half bottom">
                         <p className="bold">Remaining time:</p>
                         <div>
-                          <p>{counterTime.diff(now, this.state.format)}</p>
+                          <p className="counter-time">{counterTime.diff(now, this.state.format)}</p>
                           <select value={this.state.format} onChange={e => this.changeFormat(e)}
                                   className="counter-format">
                             {formats.map((format, i) => {
@@ -111,20 +109,21 @@ class CounterDetails extends React.Component {
                         </div>
                       </div> :
                       <div className="half bottom" style={{justifyContent: 'center'}}>
-                        <p>It is time! You can read a message now.</p>
+                        {this.state.counter.message && counterTime.isBefore(now) ?
+                          <p>It is time! You can read a message now.</p> : null}
+                        {!this.state.counter.message && counterTime.isBefore(now) ? <p>Time is up!</p> : null}
                       </div>
                     }
                   </div>
                 </Col>
-                <Col xs={1}/>
-                <Col xs={5} className="column center" style={{justifyContent: 'flex-start'}}>
+                <Col xs={12} xl={6} className="column center" style={{justifyContent: 'flex-start'}}>
                   {this.state.counter.message ?
                     <Checkbox checked={this.state.counter.message && counterTime.isBefore(now)} type="message"
                               position="self-align-end" readOnly/> : null}
                   {this.state.counter.message && counterTime.isBefore(now) ?
                     <Textarea value={this.state.counter.message}
                               rows={7}
-                              readOnly/> : <div></div>
+                              readOnly/> : null
                   }
                   <Button onClick={this.onOpen}>Delete</Button>
                 </Col>
@@ -132,7 +131,7 @@ class CounterDetails extends React.Component {
             </Field>
           </Col>
         </Row>
-      </Container>
+      </Grid>
     )
   }
 }

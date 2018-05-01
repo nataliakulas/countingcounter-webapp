@@ -28,6 +28,17 @@
   background-image: url("../media/icons/stopwatch-time-hover.svg");
 }
 
+.react-datepicker-popper[data-placement^="top"]
+.react-datepicker__triangle {
+  border-top-color: #545E73;
+  margin-bottom: -12px;
+}
+
+.react-datepicker-popper[data-placement^="top"]
+.react-datepicker__triangle::before {
+  border-top: 0;
+}
+
 .react-datepicker-popper[data-placement^="bottom"] {
   margin-top: -3px;
 }

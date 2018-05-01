@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-grid-system';
+import { Grid, Row, Col } from 'react-flexbox-grid';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 
@@ -14,7 +14,7 @@ import Button from '../components/Button';
 import { Error, Success } from '../components/Info';
 
 const Profile = ({authUser}) =>
-  <Container style={{height: '100vh'}}>
+  <Grid style={{height: '100vh'}}>
     <Row style={{height: '100vh'}}>
       <Col xs={1} sm={3} md={4}/>
       <Col xs={10} sm={6} md={4}>
@@ -22,7 +22,7 @@ const Profile = ({authUser}) =>
       </Col>
       <Col xs={1} sm={3} md={4}/>
     </Row>
-  </Container>;
+  </Grid>;
 
 const INITIAL_STATE = {
   password: '',
@@ -55,7 +55,7 @@ class PasswordChange extends React.Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-        <Field legend={this.props.user} display="column center" margin="50% 0 0 0">
+        <Field title={this.props.user} display="column center" margin="50% 0 0 0">
           <p>Do you want to change your password?</p>
           <Input
             value={this.state.password}
