@@ -1,8 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import moment from 'moment';
+
+import * as routes from '../routes';
 
 import { db } from '../firebase/index';
 import { setCounterName, setCounterTime, setCounterMessage } from '../actions';
@@ -13,6 +15,7 @@ import { authCondition } from '../helpers/helpers';
 import Button from './Button';
 import Checkbox from './Checkbox';
 import { Error, Warning, Create, Remove } from './Info';
+import Modal from '../components/Modal';
 
 const mapStateToProps = (state) => ({
   authUser: state.sessionState.authUser,
@@ -35,14 +38,12 @@ class CounterSet extends React.Component {
       warning: false,
       warningMsg: 'Something is missing, please check date or time.',
       create: false,
-      createMsg: 'Your counter has been created',
       remove: false,
-      removeMsg: 'Counter data has been removed'
     }
   }
 
   componentWillUnmount() {
-    this.clear()
+    this.clear();
   }
 
   clear = () => {
@@ -51,19 +52,27 @@ class CounterSet extends React.Component {
     this.props.onSetCounterMessage('');
   };
 
-  onDelete = () => {
-    this.clear();
-    this.setState({error: false, warning: false, create: false, remove: true})
-  };
-
   onSubmit = (e) => {
     const timestamp = moment(this.props.time).toISOString();
 
     db.createCounter(this.props.name, timestamp, this.props.message, this.props.authUser.uid);
-    this.setState({create: true});
-    this.clear();
+    this.onOpenCreate();
 
     e.preventDefault();
+  };
+
+  onOpenRemove = () => {
+    this.clear();
+    this.setState({remove: true, create: false})
+  };
+
+  onOpenCreate = () => {
+    this.clear();
+    this.setState({remove: false, create: true})
+  };
+
+  onClose = () => {
+    this.setState({remove: false, create: false})
   };
 
   render() {
@@ -71,6 +80,20 @@ class CounterSet extends React.Component {
 
     return (
       <div className="column center">
+        <Modal show={this.state.remove} close={this.onClose} className="column center">
+          <Remove>Counter data has been cleared. <br/> Do you want to try again or go to dashboard?</Remove>
+          <div className="row" style={{width: '80%', marginTop: 30}}>
+            <Link to={routes.DASHBOARD} className="button column center">Dashboard</Link>
+            <Button onClick={this.onClose}>OK!</Button>
+          </div>
+        </Modal>
+        <Modal show={this.state.create} close={this.onClose} className="column center">
+          <Create>Counter created!<br/> Do you want to set up another one or go to dashboard?</Create>
+          <div className="row" style={{width: '80%', marginTop: 30}}>
+            <Link to={routes.DASHBOARD} className="button column center">Dashboard</Link>
+            <Button onClick={this.onClose}>One more!</Button>
+          </div>
+        </Modal>
         <form onSubmit={this.onSubmit} className="column" style={{width: '100%', alignItems: 'flex-start'}}>
           <Checkbox checked={this.props.name}
                     label={this.props.name ? this.props.name : 'Set name!'}
@@ -83,18 +106,14 @@ class CounterSet extends React.Component {
                     readOnly/>
           <div className="display-row" style={{width: '100%', justifyContent: 'space-between'}}>
             <Button className="button remove" margin="0 10px 20px 0"
-                    onClick={this.onDelete}>Delete</Button>
+                    onClick={this.onOpenRemove} type="button">Clear</Button>
             <Button className="button create" margin="0 0 20px 10px" disabled={isInvalid} type="submit">Create</Button>
           </div>
         </form>
         {this.state.error ?
           <Error>{this.state.errorMsg}</Error>
           : (this.state.warning ? <Warning>{this.state.warningMsg}</Warning>
-              : (this.state.remove ? <Remove>{this.state.removeMsg}</Remove>
-                  : (this.state.create ? <Create>{this.state.createMsg}</Create>
-                      : <div style={{height: 40}}/>
-                  )
-              )
+              : <div style={{height: 40}}/>
           )
         }
       </div>

@@ -9,7 +9,7 @@ import { authCondition, propByKey } from '../helpers/helpers';
 
 import Input from './Input';
 import Button from './Button';
-import { Success, Error, Warning } from './Info';
+import { Success, Error } from './Info';
 
 const mapStateToProps = (state) => ({
   authUser: state.sessionState.authUser,
@@ -24,20 +24,28 @@ class CounterName extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '' || this.props.name,
+      name: '',
       success: false,
       successMsg: 'Counter name set!',
-      warning: false,
-      warningMsg: 'Please set counter time first!',
       error: false,
       errorMsg: 'Counter not set!'
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.name.length === 0) {
+      this.setState({
+        name: '',
+        success: false,
+        error: false
+      })
+    }
+  }
+
   set = () => {
     const save = () => {
       this.props.onSetCounterName(this.state.name);
-      this.setState({success: true, error: false, warning: false})
+      this.setState({success: true, error: false})
     };
 
     this.state.name ? save() : this.props.onSetCounterName(null);
@@ -56,10 +64,8 @@ class CounterName extends React.Component {
         <Button disabled={isInvalid} onClick={this.set}>Set</Button>
         {this.state.error ?
           <Error>{this.state.errorMsg}</Error>
-          : (this.state.warning ? <Warning>{this.state.warningMsg}</Warning>
-              : (this.state.success ? <Success>{this.state.successMsg}</Success>
-                  : <div style={{height: 40}}/>
-              )
+          : (this.state.success ? <Success>{this.state.successMsg}</Success>
+              : <div style={{height: 40}}/>
           )
         }
       </div>

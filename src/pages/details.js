@@ -33,7 +33,7 @@ class CounterDetails extends React.Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     db.getCounters().then(snap => {
       const counters = [];
 

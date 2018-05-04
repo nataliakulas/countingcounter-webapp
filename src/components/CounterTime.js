@@ -10,7 +10,7 @@ import { authCondition } from '../helpers/helpers';
 
 import Button from './Button';
 import CounterPicker from './CounterPicker';
-import { Success, Error, Warning } from './Info';
+import { Success, Error } from './Info';
 
 const mapStateToProps = (state) => ({
   authUser: state.sessionState.authUser,
@@ -25,14 +25,22 @@ class CounterTime extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      time: moment().add(1, 'h') || this.props.time,
+      time: moment().add(1, 'h'),
       success: false,
       successMsg: 'Counter time set!',
-      warning: false,
-      warningMsg: 'Please set counter time first!',
       error: false,
       errorMsg: 'Please add valid time!'
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.time.length === 0) {
+      this.setState({
+        name: '',
+        success: false,
+        error: false
+      })
+    }
   }
 
   set = () => {
@@ -67,10 +75,8 @@ class CounterTime extends React.Component {
         <Button disabled={isInvalid} onClick={this.set}>Set</Button>
         {this.state.error ?
           <Error>{this.state.errorMsg}</Error>
-          : (this.state.warning ? <Warning>{this.state.warningMsg}</Warning>
-              : (this.state.success ? <Success>{this.state.successMsg}</Success>
-                  : <div style={{height: 40}}/>
-              )
+          : (this.state.success ? <Success>{this.state.successMsg}</Success>
+              : <div style={{height: 40}}/>
           )
         }
       </div>

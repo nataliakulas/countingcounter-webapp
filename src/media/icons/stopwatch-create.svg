@@ -6,7 +6,7 @@
     <defs></defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="stopwatch-create" fill-rule="nonzero">
-            <circle id="Oval" fill="#ECF0F1" cx="29" cy="29" r="29"></circle>
+            <circle id="Oval" fill="#FDFFFC" cx="29" cy="29" r="29"></circle>
             <path d="M29,4 C42.785,4 54,15.215 54,29 C54,42.785 42.785,54 29,54 C15.215,54 4,42.785 4,29 C4,15.215 15.215,4 29,4 Z M29,0 C12.984,0 0,12.984 0,29 C0,45.016 12.984,58 29,58 C45.016,58 58,45.016 58,29 C58,12.984 45.016,0 29,0 Z" id="Shape" fill="#545E73"></path>
             <g id="Group" transform="translate(6.000000, 5.000000)" fill="#808AA1">
                 <path d="M23,0.879 C22.448,0.879 22,1.326 22,1.879 L22,2.879 C22,3.432 22.448,3.879 23,3.879 C23.552,3.879 24,3.432 24,2.879 L24,1.879 C24,1.326 23.552,0.879 23,0.879 Z" id="Shape"></path>

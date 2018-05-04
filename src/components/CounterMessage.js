@@ -9,7 +9,12 @@ import { authCondition } from '../helpers/helpers';
 
 import Button from './Button';
 import Textarea from './Textarea';
-import { Success, Error, Warning } from './Info';
+import { Success, Error } from './Info';
+
+const mapStateToProps = (state) => ({
+  authUser: state.sessionState.authUser,
+  message: state.counterState.message,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   onSetCounterMessage: (message) => dispatch(setCounterMessage(message))
@@ -19,13 +24,21 @@ class CounterMessage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      message: "" || this.props.message,
+      message: "",
       success: false,
       successMsg: 'Counter message added!',
-      warning: false,
-      warningMsg: "Counter has no message. It's okay, but be aware, that you can't add it later",
       error: false,
       errorMsg: 'Counter not set!'
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.message.length === 0) {
+      this.setState({
+        name: '',
+        success: false,
+        error: false
+      })
     }
   }
 
@@ -36,17 +49,14 @@ class CounterMessage extends React.Component {
   set = () => {
     const save = () => {
       this.props.onSetCounterMessage(this.state.message);
-      this.setState({success: true, error: false, warning: false})
-    };
-    const saveWithout = () => {
-      this.props.onSetCounterMessage('');
-      this.setState({success: false, error: false, warning: true})
+      this.setState({success: true, error: false})
     };
 
-    this.state.message ? save() : saveWithout()
+    this.state.message ? save() : this.props.onSetCounterMessage('')
   };
 
   render() {
+    const isInvalid = this.state.message === '';
 
     return (
       <div className="column center">
@@ -55,22 +65,20 @@ class CounterMessage extends React.Component {
                   value={this.state.message}
                   onChange={e => this.setMessage(e)}
                   rows={5}/>
-        <Button onClick={this.set}>Set</Button>
+        <Button disabled={isInvalid} onClick={this.set}>Set</Button>
         {this.state.error ?
           <Error>{this.state.errorMsg}</Error>
-          : (this.state.warning ? <Warning>{this.state.warningMsg}</Warning>
-              : (this.state.success ? <Success>{this.state.successMsg}</Success>
-                  : <div style={{height: 40}}/>
-              )
+          : (this.state.success ? <Success>{this.state.successMsg}</Success>
+              : <div style={{height: 40}}/>
           )
         }
       </div>
     )
   }
-
 }
 
 export default compose(
   withAuthorization(authCondition),
-  connect(null, mapDispatchToProps)
+  connect(null, mapDispatchToProps),
+  connect(mapStateToProps)
 )(CounterMessage)
