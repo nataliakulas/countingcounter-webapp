@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 
 import * as routes from '../routes';
 
-import Loader from '../components/Loader';
 import Field from '../components/Field';
 
 import '../styles/animation.css';
