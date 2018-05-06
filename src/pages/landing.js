@@ -55,12 +55,6 @@ const mapStateToProps = (state) => ({
 class LandingPage extends React.Component {
   render() {
 
-    if (!this.props.authUser) {
-      return (
-        <Loader/>
-      );
-    }
-
     return (
       <Grid>
         <Row middle="xs" style={{minHeight: 'calc(100vh - 110px)'}}>
@@ -70,13 +64,12 @@ class LandingPage extends React.Component {
                 Everyday we count years, weeks, days...</p>
               <p>Counting Counter will count it for you!</p>
               <p>Set up multiple counters, change their format and write a special message to your future self!</p>
-
-              {this.props.authUser ?
-                <p><Link className="link" to={routes.DASHBOARD}>Go to dashboard</Link></p> :
-                <p><Link className="link" to={routes.SIGN_UP}>Create an account</Link> today or
-                  <Link className="link" to={routes.LOG_IN}> log in</Link> if you are already registered.</p>
-              }
             </Field>
+            {this.props.authUser ?
+              <div style={{margin: 30}}>
+                <Link className="button column center" to={routes.DASHBOARD}>Go to dashboard</Link>
+              </div>
+              : <div style={{height: 50, margin: 30}}/>}
           </Col>
         </Row>
         <LandingBackground/>
