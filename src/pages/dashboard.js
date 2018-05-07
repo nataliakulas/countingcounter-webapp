@@ -95,6 +95,9 @@ class Dashboard extends React.Component {
         if (counters.length > 0) {
           this.setState(() => ({hasCounters: true, counters: counters, loading: false}))
         }
+        else {
+          this.setState(() => ({hasCounters: false, loading: false}))
+        }
       }
     );
   }
