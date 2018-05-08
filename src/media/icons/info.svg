@@ -7,8 +7,8 @@
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="info">
             <circle id="Oval" fill="#545E73" fill-rule="nonzero" cx="25" cy="25" r="25"></circle>
-            <path d="M25,37 L25,39" id="Shape" stroke="#FDFFFC" stroke-width="2" stroke-linecap="round"></path>
-            <path d="M18,16 C18,12.101 21.188,8.946 25.1,9.001 C28.817,9.053 31.948,12.183 32,15.901 C32.035,18.412 30.748,20.624 28.79,21.887 C26.355,23.457 25,26.261 25,29.158 L25,32" id="Shape" stroke="#FDFFFC" stroke-width="2" stroke-linecap="round"></path>
+            <path d="M25,37 L25,39" id="Shape" stroke="#FDFFFC" stroke-width="3" stroke-linecap="round"></path>
+            <path d="M18,16 C18,12.101 21.188,8.946 25.1,9.001 C28.817,9.053 31.948,12.183 32,15.901 C32.035,18.412 30.748,20.624 28.79,21.887 C26.355,23.457 25,26.261 25,29.158 L25,32" id="Shape" stroke="#FDFFFC" stroke-width="3" stroke-linecap="round"></path>
         </g>
     </g>
 </svg>
