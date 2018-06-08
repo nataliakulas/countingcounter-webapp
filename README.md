@@ -1,8 +1,8 @@
-##Counting Counter
+## Counting Counter
 
 Preview: https://counting-counter.surge.sh
 
-Web Application with nice landig animation, based on React and Firebase with use of:
+Web Application with nice landig animation, hosted on surge, based on React and Firebase with use of:
 - Redux.js
 - moment.js
 - other npm packages listed in package.json
