@@ -850,4 +850,8 @@ input:focus {
     width: 170px;
     margin: 0 15px;
   }
+
+  .width-80 {
+    width: 80%;
+  }
 }

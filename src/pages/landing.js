@@ -65,10 +65,10 @@ class LandingPage extends React.Component {
               <p>Set up multiple counters, change their format and write a special message to your future self!</p>
             </Field>
             {this.props.authUser ?
-              <div style={{margin: 30}}>
+              <div style={{margin: 15}}>
                 <Link className="button column center" to={routes.DASHBOARD}>Go to dashboard</Link>
               </div> :
-              <div style={{margin: '15px 0'}} className="display-row space-between">
+              <div style={{margin: '15px auto'}} className="display-row space-between width-80">
                 <Link className="button column center" style={{marginRight: 5}} to={routes.LOG_IN}>Log in</Link>
                 <Link className="button column center" style={{marginLeft: 5}} to={routes.SIGN_UP}>Sign up</Link>
               </div>

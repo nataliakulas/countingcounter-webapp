@@ -26,3 +26,7 @@ export const updatePass = (password) =>
 
 // Authentication Change
 export const authStateChanged = (user) => auth.onAuthStateChanged(user);
+
+//Delete Account
+export const deleteUser = () =>
+  auth.currentUser.delete();

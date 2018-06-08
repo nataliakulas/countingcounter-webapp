@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { compose } from 'recompose';
 
 import { auth } from '../firebase';
+import { deleteUser } from '../firebase/auth';
 
 import withAuthorization from '../helpers/withAuthorization';
 import { propByKey, authCondition } from '../helpers/helpers';
@@ -12,6 +13,7 @@ import Field from '../components/Field';
 import Input from '../components/Input';
 import Button from '../components/Button';
 import { Error, Success } from '../components/Info';
+import Modal from '../components/Modal';
 
 const Profile = ({authUser}) =>
   <Grid style={{height: '100vh'}}>
@@ -19,6 +21,7 @@ const Profile = ({authUser}) =>
       <Col xs={1} sm={3} md={4}/>
       <Col xs={10} sm={6} md={4}>
         <PasswordChange user={authUser ? authUser.email : 'stranger'}/>
+        <DeleteAccount/>
       </Col>
       <Col xs={1} sm={3} md={4}/>
     </Row>
@@ -29,6 +32,40 @@ const INITIAL_STATE = {
   error: null,
   success: false,
 };
+
+class DeleteAccount extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {modal: false}
+  }
+
+  deleteUser = () => {
+    deleteUser();
+  };
+
+  onOpen = () => {
+    this.setState({modal: true})
+  };
+
+  onClose = () => {
+    this.setState({modal: false})
+  };
+
+  render() {
+    return (
+      <div className="column center" style={{margin: '30px auto'}}>
+        <Modal show={this.state.modal} close={this.onClose} className="column center">
+          <p>Do you really want to your profile?</p>
+          <div className="row" style={{width: '80%', marginTop: 30}}>
+            <Button onClick={this.onClose}>No!</Button>
+            <Button onClick={this.deleteUser}>Yes!</Button>
+          </div>
+        </Modal>
+        <Button type="button" onClick={this.onOpen}>Delete profile</Button>
+      </div>
+    )
+  }
+}
 
 class PasswordChange extends React.Component {
   constructor(props) {
