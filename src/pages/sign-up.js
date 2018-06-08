@@ -54,10 +54,10 @@ class SignUp extends React.Component {
 
     return (
       <Grid>
-        <Row middle="xs" style={{minHeight: 'calc(100vh - 110px)'}}>
+        <Row middle="xs" style={{minHeight: '100vh'}}>
           <Col xsOffset={1} xs={10} smOffset={3} sm={6} lgOffset={4} lg={4}>
             <form onSubmit={this.onSubmit}>
-              <Field title="Create account" display="column center">
+              <Field title="Create account" display="column center" margin="85px 0 0 0">
                 <Input
                   value={this.state.username}
                   onChange={e => this.setState(propByKey('username', e.target.value))}

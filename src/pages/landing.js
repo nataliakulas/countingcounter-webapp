@@ -56,9 +56,9 @@ class LandingPage extends React.Component {
 
     return (
       <Grid>
-        <Row middle="xs" style={{minHeight: 'calc(100vh - 110px)'}}>
+        <Row middle="xs" style={{minHeight: '100vh'}}>
           <Col xsOffset={1} xs={10} smOffset={3} sm={6} lgOffset={4} lg={4}>
-            <Field display="column center">
+            <Field display="column center" margin="85px 0 0 0">
               <p>Everyone is waiting for something.<br/>
                 Everyday we count years, weeks, days...</p>
               <p>Counting Counter will count it for you!</p>
@@ -67,8 +67,12 @@ class LandingPage extends React.Component {
             {this.props.authUser ?
               <div style={{margin: 30}}>
                 <Link className="button column center" to={routes.DASHBOARD}>Go to dashboard</Link>
+              </div> :
+              <div style={{margin: '15px 0'}} className="display-row space-between">
+                <Link className="button column center" style={{marginRight: 5}} to={routes.LOG_IN}>Log in</Link>
+                <Link className="button column center" style={{marginLeft: 5}} to={routes.SIGN_UP}>Sign up</Link>
               </div>
-              : <div style={{height: 50, margin: 30}}/>}
+            }
           </Col>
         </Row>
         <LandingBackground/>

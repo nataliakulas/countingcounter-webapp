@@ -94,11 +94,10 @@ class CounterDetails extends React.Component {
             <Button onClick={this.deleteCounter}>Yes!</Button>
           </div>
         </Modal>
-        <Row top="xs" style={{minHeight: 'calc(100vh - 110px)'}}>
-          <Col xsOffset={1} xs={10} smOffset={2} sm={8} lgOffset={3} lg={6} xlOffset={0} xl={12}
-               style={{marginTop: 110}}>
+        <Row top="xs" middle="sm" style={{minHeight: '100vh'}}>
+          <Col xsOffset={1} xs={10} smOffset={2} sm={8} lgOffset={3} lg={6} xlOffset={0} xl={12}>
             <Field title={this.state.counter.name ? this.state.counter.name : "Waiting for counter.."}
-                   display="field-padding">
+                   display="field-padding" margin="115px 0 65px 0">
               <Row>
                 <Col xs={12} xl={6}>
                   <div className="counter-box">

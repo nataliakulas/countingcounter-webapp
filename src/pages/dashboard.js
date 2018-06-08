@@ -148,10 +148,10 @@ class Dashboard extends React.Component {
     return (
       <Grid>
         {this.state.hasCounters ?
-          <Row top="xs" style={{minHeight: 'calc(100vh - 110px)'}}>
-            <Col xsOffset={1} xs={10} smOffset={1} sm={5} xlOffset={0} xl={6} style={{marginTop: 110}}>
+          <Row middle="xs" style={{minHeight: '100vh'}}>
+            <Col xsOffset={1} xs={10} mdOffset={1} md={5} xlOffset={0} xl={6}>
               <Field title={filteredCounters.length > 0 ? "Here are your counters" : "Sorry, no counters!"}
-                     display="column center">
+                     display="column center" margin="85px 0 65px 0">
                 {filteredCounters.map(counter =>
                   <Counter key={counter.key}
                            path={counter.key}
@@ -161,13 +161,12 @@ class Dashboard extends React.Component {
                 )}
               </Field>
             </Col>
-
-            <Col xsOffset={1} xs={10} smOffset={1} sm={5} lg={4} xl={5} style={{marginTop: 110}}>
+            <Col xsOffset={1} xs={10} mdOffset={1} md={5} lg={4} xl={5}>
               <div className="display-row space-between">
                 <Link className="button column center"
                       to={routes.CREATE}>Add new</Link>
               </div>
-              <Field title="Filters" display="column center" margin="60px 0 0 0">
+              <Field title="Filters" display="column center" margin="60px 0 65px 0">
                 <Input className="search"
                        type="text"
                        placeholder="Counter name"
@@ -199,7 +198,7 @@ class Dashboard extends React.Component {
               </Field>
             </Col>
           </Row> :
-          <Row middle="xs" style={{minHeight: 'calc(100vh - 110px)'}}>
+          <Row middle="xs" style={{minHeight: '100vh'}}>
             <Col xsOffset={1} xs={10} smOffset={3} sm={6} lgOffset={4} lg={4}>
               <Field display="column center" margin="10% 0 0 0">
                 <p className="text-center">It seems like you don't have any counter yet</p>

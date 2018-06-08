@@ -11,7 +11,7 @@ import CounterSet from '../components/CounterSet';
 
 export default () =>
   <Grid>
-    <Row middle="xs" top="sm" style={{minHeight: 'calc(100vh - 110px)'}}>
+    <Row middle="xs" top="sm" style={{minHeight: '100vh'}}>
       <Col xsOffset={1} xs={10} smOffset={3} sm={6} lgOffset={4} lg={4} style={{marginTop: 110}}>
         <Accordion style={{margin: '25px auto'}}>
           <AccordionItem>
